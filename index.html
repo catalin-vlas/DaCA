@@ -203,28 +203,62 @@
 			<li>
 				<b>The node table</b>
 			</li>
-			<p>
 				The node table stores the representation of RDF terms, providing two mappings from Node to NodeId and from NodeId to Node.
 				The Node to NodeId mapping is used during data loading and when converting constant terms in queries from their Jena Node representation to the TDB-specific internal ids.
 				The NodeId to Node mapping is used to turn query results expressed as TDB NodeIds into the Jena Node representation and also during query processing when filters are applied if the whole node representation is needed for testing (e.g. regex).
-			</p>
 			<li>
 				<b>Triple and Quad indexes</b>
 			</li>
-			<p>
 				Quads are used for named graphs, triples for the default graph. Triples are held as 3-tuples of NodeIds in triple indexes - quads as 4-tuples. Otherwise they are handled in the same manner.
 				The triple table is 3 indexes - there is no distinguished triple table with secondary indexes. Instead, each index has all the information about a triple.
-			</p>
 			<li>
 				<b>The prefixes table</b>
 			</li>
-			<p>
 				The prefixes table uses a node table and a index for GPU (Graph->Prefix->URI). It is usually small. It does not take part in query processing. It provides support for Jena's PrefixMappings used mainly for presentation and for serialisation of triples in RDF/XML or Turtle.
-			</p>
 		</ul>
 		</p>
 	  </section>
-	  
+
+	  <section typeof="sa:MaterialsAndMethods" id="statistics">
+        <h2>Dataset statistics</h2>
+        <p>
+          This component will manage the collection and offering of dataset statistics.
+		</p>
+		<p>
+			Every time a dataset is uploaded on our website (via UI or API), multi-dimensional data
+			regarding this dataset along with its graphs is published as a <a href="https://www.w3.org/TR/vocab-data-cube/">RDF Data Cube</a> to facilitate
+			reporting, supporting decisions (inference) and getting insight about data (descriptive statistics).
+		</p>
+		<p>
+			The advantages of using RDF Data Cube are that it can be queried via <a href="https://www.w3.org/TR/rdf-sparql-query/">SparQL</a> and also can be linked to other concepts/datasets.
+		</p>
+		<p>
+		The components of a RDF Data Cube:
+		<ul>
+			<li>
+				<b>Dimensions</b>
+			</li>
+				Used to identify observations.
+			<li>
+				<b>Attributes</b>
+			</li>
+				Used to qualify and interpret the observed values.
+			<li>
+				<b>Measures</b>
+			</li>
+				Used to represent the observation.
+		</ul>
+		</p>
+		<p>
+			For example, if the aim is to retrieve statistics related to number of triples we can consider as
+	dimensions: graph, node and role (if the node is the subject or the object) of the triple, while the measure
+	is every entry in the data cube, so the number of the triples.
+		</p>
+		<p>
+			The visualization and the export of these statistics is available using the corresponding modules presented above.
+		</p>
+	  </section>
+
 	  <section typeof="sa:Conclusion" id="conclusion">
         <h2>Conclusion</h2>
         <p>
