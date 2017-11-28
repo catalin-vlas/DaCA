@@ -67,6 +67,103 @@
         </p>
       </section>
 	  
+	  
+	  <section typeof="sa:MaterialsAndMethods" id="visualisation">
+        <h2>Visualisation</h2>
+        <p>
+		  This module should provide a way to visualize RDF graphs/datasets uploaded by user on "daca" website. <br>
+          The visualization will be performed on client side using a JS library after getting the graph in a JSON format from "daca" backend.	
+		</p>
+		
+		<h3>Existing tools:</h3>
+		<p>
+		  <ul>
+		    <li>
+			   <a href="http://en.lodlive.it/"> LodLive </a> <br> 
+			   The basic principle underlying LodLive is to prove that resources published according to the W3C SPARQL standard are easy to reach and understand, with hopes that the LodLive approach can stimulate Public Administrations and large-scale data owners to add their resources to the LOD and share them.
+			</li>
+			
+		    <li> 
+			   <a href="https://github.com/gephi/gephi/wiki"> Gephi </a> <br> 
+               Gephi is an interactive visualization and exploration platform for all kinds of networks and complex systems, dynamic and hierarchical graphs.
+               Gephi can not just visualize graphs but also supports analyzing, layouting and further importing and exporting. There is a <a href="https://wiki.gephi.org/index.php/SemanticWebImport"> Semantic Web Import Extension </a> that allows you to directly query (via SPARQL) or import RDF data. You can install it directly within the program at Plugins.			
+			</li>
+			
+		    <li> 
+			   <a href="http://rhizomik.net/html/redefer/rdf2svg-form/"> Rhizomik </a> <br> 
+	           Rhizomik is a converter, which can transform a RDF file in a SVG image
+			</li>
+			
+		    <li> <a href="https://visgraph3.github.io/index.html"> Vizgraph3 </a> </li>
+		    <li> <a href="http://philogb.github.io/jit/demos.html"> Philogb </a> </li>
+		    <li> <a href="http://vowl.visualdataweb.org/v2/"> Vowl </a> </li>			
+		  </ul>
+		</p>
+		
+		<h3>JS Libraries:</h3>
+		<p>
+		  <ul>
+		    <li>
+			   <a href="http://sigmajs.org/"> Sigmajs </a> <br> 
+               Sigma is a JavaScript library dedicated to graph drawing. It makes easy to publish networks on Web pages, and allows developers to integrate network exploration in rich Web applications.
+			</li>
+			
+		    <li> 
+			   <a href="https://d3js.org/"> D3js </a> <br> 
+               D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. D3’s emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation.			
+			</li>
+			
+		    <li> 
+			   <a href="https://github.com/ktym/d3sparql"> D3SPARQL </a> <br> 
+	           JavaScript library for executing SPARQL query and transforming resulted JSON for visualization in D3.js.
+			</li>
+
+		    <li> 
+			   <a href="http://visjs.org/"> Visjs </a> <br> 
+	           A dynamic, browser based visualization library. The library is designed to be easy to use, to handle large amounts of dynamic data, and to enable manipulation of and interaction with the data. The library consists of the components DataSet, Timeline, Network, Graph2d and Graph3d.
+			</li>
+
+		    <li> 
+			   <a href="https://stackoverflow.com/questions/7034/graph-visualization-library-in-javascript"> Other </a>
+			</li>			
+		
+		  </ul>
+		</p>		
+      </section>
+	  
+	  
+	  <section typeof="sa:MaterialsAndMethods" id="visualisation">
+        <h2>Comparison</h2>
+        <p>
+          The input of this module will be two RDF graphs and a set operation like A\B or A &cap; B. Also it can check for graph izomorphism.	
+		</p>
+		
+		<h3>Existing tools:</h3>
+		<p>
+		  <ul>
+		    <li> <a href="https://www.w3.org/2001/sw/wiki/How_to_diff_RDF"> Here is a summary on existing RDF comparison tools </a> </li>
+			
+		    <li> 
+			   <a href="https://github.com/RDFLib/rdflib/blob/master/rdflib/compare.py"> Compare.py </a> <br> 
+               A collection of utilities which can be used in RDF graph comparison. Here we can find functions which can help us to determine 
+               if two graphs are isomorphic or not, nodes that are present in a graph but not in other and also common nodes.			
+			</li>
+			
+		    <li> 
+			   <a href="https://jena.apache.org/"> Apache Jena </a> <br> 
+	           Apache Jena is a free and open source framework for building Semantic Web and Linked Data applications. Jena offers support for graph izomorphism checking 
+              (<a href="https://github.com/apache/jena/blob/master/jena-cmds/src/main/java/jena/rdfcompare.java"> usage example </a>).
+			</li>
+			
+		    <li> 
+			 <a href="http://docs.rdf4j.org/"> RDF4j </a> <br>
+			 Another interesting framework which enables users to construct and manipulate RDF models in different ways.
+			</li>
+			
+		  </ul>
+		</p>	
+      </section>
+	  
 	  <section typeof="sa:ReferenceList" id="references">
         <h2>References</h2>
         <dl>
