@@ -54,17 +54,39 @@
 	 <section typeof="sa:Abstract" id="abstract">
         <h2>Abstract</h2>
         <p>
-          DaCA will be a web tool able to perform various processing tasks regarding the meta-data available in RDFa and HTML5 microdata 
+          DaCA is a web tool able to perform various processing tasks regarding the meta-data available in RDFa and HTML5 microdata 
           formats provided by the Web Data Commons. Using a modular approach, a minimal set of operations are provided: visualize,
           clasify, compare, and match/align. Various statistics, modeled with the RDF Data Cube vocabulary, will be also exposed.
-		  To use the tool, a user should create an account or register with facebook for example. After this he will be able to upload
+        </p>
+      </section>
+	  
+	  
+      <section typeof="sa:MaterialsAndMethods" id="introduction">
+        <h2>Introduction</h2>
+        <p>
+          More and more websites have started to embed structured data describing products, people, organizations, places, events into their HTML pages 
+		  using markup standards such as RDFa, Microdata and Microformats. The Web Data Commons project extracts this data from several billion web pages. 
+		  The project provides the extracted data for download and publishes statistics about the deployment of the different formats.
+		  For example the most recent scan was performed in October 2016 and the results were quite impressive. From over 3.1 billions scanned URLs over 1.2 billions
+		  contained RDF data which represents about 38% which is a significant increase comparing with the scan from 2012 where only 12% of scanned URLs contained 
+		  RDF data. 
+        </p>
+		
+		<p>
+		  Using DaCA you are able to load and analyse knowledge graphs collected by Web Data Commons from the entire internet. This can make you or your applications,
+		  better understand and relationate web resources. This information can be used to build smart websites and aplications and even to make buisiness decisions.<br><br>
+		
+		  To use the tool, a user should create an account or register with facebook for example. After this he will be able to upload or pass direct links to
 		  files provided by Web Data Commons in N-Quads format. After the file is uploaded the user will be able to see the list of uploaded files 
 		  in his personal dasboard, which will contain for each file some statistics like: number of nodes, number of connected graphs,
 		  number of edges, etc. Also phisical information about uploaded files will be provided: internal id, file size, etc.
-		  From dashboard page a user will be able to navigate to a visualisation page where he will see the list of graphs contained in uploaded 
-		  datased as well as a graphical representation of those graphs. Here he will be able also to perform SPARQL queries againt loaded dataset.
-		  This tool will aslo provide support for RDF graph conparison and match/align.  
-        </p>
+		  From dashboard page a user will be able to navigate to a visualisation page where he will see the list of graphs contained in the uploaded 
+		  dataset, as well as a graphical representation of those graphs. Here he will be able also to perform SPARQL queries against loaded dataset.
+		  The tool aslo provides support for RDF graph comparison and match/align. The user can enter comparison page for example choose two graphs from his collections
+		  and check if those are isomorphic, or find nodes contained in a graph but not in the other or get nodes which are contained in both graphs. Also the tool gives the
+		  posibility to export the comparison results different formats like RDF, JSON-LD, Turtle... 
+		</p>
+		
       </section>
 	  
 	  
