@@ -153,8 +153,7 @@
 		</p>		
       </section>
 	  
-	  
-	  <section typeof="sa:MaterialsAndMethods" id="visualisation">
+	  <section typeof="sa:MaterialsAndMethods" id="comparison">
         <h2>Comparison</h2>
         <p>
           The input of this module will be two RDF graphs and a set operation like A\B or A &cap; B. Also it can check for graph izomorphism.	
@@ -186,6 +185,24 @@
 		</p>	
       </section>
 	  
+	  <section typeof="sa:MaterialsAndMethods" id="matchalign">
+        <h2>Match/Align</h2>
+        <p>
+          This component will manage the discovery and exposure of matches or correspondences between nodes from different graphs.
+		</p>
+	
+		<h3>Alignment API</h3>
+		<p>
+			In order to find the matches, <a href="http://alignapi.gforge.inria.fr/">Alignment API</a> will be used. The result is in RDF format, containing  a header "metadata" about the matching (hereinafter Alignment Format).
+		</p>
+		<p>
+			The output consists of a list of correspondences between one entity from first graph and an entity from the second one.
+		</p>
+		<p>
+			The match is based on a rule, or a metric (e.g. Levenshtein Distance on node labels) and in the latter case we can configure threshold below which the entities are considered the same.
+		</p>
+      </section>
+
 	  <section typeof="sa:MaterialsAndMethods" id="storage">
         <h2>Storage</h2>
         <p>
