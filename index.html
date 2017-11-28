@@ -186,6 +186,45 @@
 		</p>	
       </section>
 	  
+	  <section typeof="sa:MaterialsAndMethods" id="storage">
+        <h2>Storage</h2>
+        <p>
+          This component will manage storing and offering RDF graphs.
+		</p>
+		<p>
+		  For these tasks the application will use Apache Jena's <a href="https://jena.apache.org/documentation/tdb/">TDB</a> library. TDB is a component of Jena for RDF storage and query.
+		</p>
+		<p>
+		  TDB is a persistent graph storage layer for Jena, allowing for CRUD operations and Transactions. It is a pure-Java, employing memory mapped I/O, a custom implementation of <a href="https://en.wikipedia.org/wiki/B+_tree">B+Trees</a> and optimized range filters for XSD value spaces (integers, decimals, dates, dateTime).
+		</p>
+		<p>
+		A dataset backed by TDB is stored in a single directory in the filing system. A dataset consists of:
+		<ul>
+			<li>
+				<b>The node table</b>
+			</li>
+			<p>
+				The node table stores the representation of RDF terms, providing two mappings from Node to NodeId and from NodeId to Node.
+				The Node to NodeId mapping is used during data loading and when converting constant terms in queries from their Jena Node representation to the TDB-specific internal ids.
+				The NodeId to Node mapping is used to turn query results expressed as TDB NodeIds into the Jena Node representation and also during query processing when filters are applied if the whole node representation is needed for testing (e.g. regex).
+			</p>
+			<li>
+				<b>Triple and Quad indexes</b>
+			</li>
+			<p>
+				Quads are used for named graphs, triples for the default graph. Triples are held as 3-tuples of NodeIds in triple indexes - quads as 4-tuples. Otherwise they are handled in the same manner.
+				The triple table is 3 indexes - there is no distinguished triple table with secondary indexes. Instead, each index has all the information about a triple.
+			</p>
+			<li>
+				<b>The prefixes table</b>
+			</li>
+			<p>
+				The prefixes table uses a node table and a index for GPU (Graph->Prefix->URI). It is usually small. It does not take part in query processing. It provides support for Jena's PrefixMappings used mainly for presentation and for serialisation of triples in RDF/XML or Turtle.
+			</p>
+		</ul>
+		</p>
+	  </section>
+	  
 	  <section typeof="sa:Conclusion" id="conclusion">
         <h2>Conclusion</h2>
         <p>
