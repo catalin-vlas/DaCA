@@ -26,9 +26,12 @@
     <!-- Not needed for DaCA -->
     <!-- <div ng-include src="'static/partials/navbar.component.html'"></div> -->
 
-    <div class="container">
-        <div class="row" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-        <div class="row" ng-view></div>
+    <div id="wrap">
+        <div class="container-fluid">
+            <div class="row" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+            <div ng-view></div>
+        </div>
+        <div id="push"></div>
     </div>
 
     <!-- The footer of the page -->
