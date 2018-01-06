@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="DaCAWebsite:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="DaCAWebsite.war">
+      <element id="artifact" artifact-name="DaCAWebsite:war exploded" />
+    </root>
+  </artifact>
+</component>

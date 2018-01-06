@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+}
+
+/*
+ * Navbar
+ */
+#navbar {
+    margin: 0;
+}
+
+/*
+ * Footer
+ */
+#footer-content {
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    padding-top: 70px;
+}
