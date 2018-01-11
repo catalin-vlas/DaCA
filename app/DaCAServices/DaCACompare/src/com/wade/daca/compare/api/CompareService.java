@@ -1,4 +1,4 @@
-package com.wade.daca.stats.api;
+package com.wade.daca.compare.api;
 
 public interface CompareService {
 
