@@ -1,10 +1,10 @@
 
-app/DaCAServices/DaCAStats/.idea/compiler.xml
 *.xml
+
 *.jar
-app/DaCAServices/DaCAUserManagement/.idea/libraries/Spring_4_3_13_RELEASE.xml
+
 *.class
-*.class
-app/DaCAServices/DaCAUserManagement/.idea/libraries/Spring_4_3_13_RELEASE.xml
-*.class
-*.class
+
+app/DaCAServices/DaCAStats/.idea/*
+app/DaCAServices/DaCAUserManagement/.idea/*
+app/DaCAServices/DaCAUserUploader/.idea/*
