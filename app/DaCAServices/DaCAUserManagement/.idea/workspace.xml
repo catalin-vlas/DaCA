@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d0c4759d-2393-40e9-b462-62fff8f7a33f" name="Default" comment="" />
+    <list default="true" id="d0c4759d-2393-40e9-b462-62fff8f7a33f" name="Default" comment="Implement Add, Delete, Update for User.">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Spring_4_3_13_RELEASE.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Spring_4_3_13_RELEASE.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/out/production/DaCAUserManagement/com/wade/daca/management/api/UserStorage.class" afterPath="$PROJECT_DIR$/out/production/DaCAUserManagement/com/wade/daca/management/api/UserStorage.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/DaCAUserManagement/com/wade/daca/management/impl/UserStorageImpl.class" afterPath="$PROJECT_DIR$/out/production/DaCAUserManagement/com/wade/daca/management/impl/UserStorageImpl.class" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,39 +29,58 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="daca: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserStorage.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserStorage.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/api/UserStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            <state relative-caret-position="204">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserStorageImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserStorageImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/impl/UserStorageImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="70" lean-forward="true" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
+            <state relative-caret-position="1241">
+              <caret line="106" column="40" lean-forward="false" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
               <folding>
-                <marker date="1515249492563" expanded="true" signature="712:750" ph="SELECT * FRO... users" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2296#2297#0" expanded="true" />
+                <element signature="e#2343#2344#0" expanded="true" />
+                <marker date="1515265929088" expanded="true" signature="764:802" ph="SELECT * FRO... users" />
+                <marker date="1515265929088" expanded="true" signature="852:911" ph="INSERT INTO users... " />
+                <marker date="1515265929088" expanded="true" signature="858:869" ph="SELECT * FRO... users" />
+                <marker date="1515265929088" expanded="true" signature="961:997" ph="DELETE FROM users... " />
+                <marker date="1515265929088" expanded="true" signature="972:997" ph="INSERT INTO users... " />
+                <marker date="1515265929088" expanded="true" signature="1047:1239" ph="UPDATE usersSET... " />
+                <marker date="1515265929088" expanded="true" signature="1053:1239" ph="DELETE FROM users... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Spring.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/spring-config/Spring.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="71" lean-forward="false" selection-start-line="19" selection-start-column="71" selection-end-line="19" selection-end-column="71" />
-              <folding />
+      <file leaf-file-name="users" pinned="false" current-in-tab="false">
+        <entry file="das://table:/12ecedde/7681d714-b6d7-4770-96e1-82c9f2f23cf1/daca.users">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -79,9 +103,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="spring-beans.schema" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -93,10 +121,12 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/wade/daca/management/sqlscripts/createdb.sql" />
         <option value="$PROJECT_DIR$/src/com/wade/daca/management/dataobjects/User.java" />
-        <option value="$PROJECT_DIR$/src/com/wade/daca/management/api/UserStorage.java" />
         <option value="$PROJECT_DIR$/src/com/wade/daca/management/mappers/UserMapper.java" />
         <option value="$PROJECT_DIR$/spring-config/Spring.xml" />
         <option value="$PROJECT_DIR$/src/com/wade/daca/management/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/wade/daca/management/api/UserManagementService.java" />
+        <option value="$PROJECT_DIR$/src/com/wade/daca/management/impl/UserManagementServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/wade/daca/management/api/UserStorage.java" />
         <option value="$PROJECT_DIR$/src/com/wade/daca/management/impl/UserStorageImpl.java" />
       </list>
     </option>
@@ -108,11 +138,12 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1696" />
-    <option name="y" value="-325" />
-    <option name="width" value="1346" />
-    <option name="height" value="698" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -128,8 +159,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -139,19 +171,13 @@
             </path>
             <path>
               <item name="DaCAUserManagement" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DaCAUserManagement" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DaCAUserManagement" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -159,12 +185,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DaCAUploader" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="SearchEverywhereHistoryKey" value="sprin&#9;ACTION&#9;ActivateSpringToolWindow" />
@@ -342,43 +368,52 @@
       <workItem from="1515239973749" duration="1495000" />
       <workItem from="1515241526705" duration="74000" />
       <workItem from="1515241662912" duration="2772000" />
-      <workItem from="1515249343715" duration="238000" />
+      <workItem from="1515249343715" duration="3539000" />
+      <workItem from="1515696396590" duration="1374000" />
     </task>
+    <task id="LOCAL-00001" summary="Implement Add, Delete, Update for User.">
+      <created>1515266015864</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1515266015864</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4579000" />
+    <option name="totallyTimeSpent" value="9254000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-312" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17291667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.116145834" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15959005" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12079063" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -389,6 +424,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implement Add, Delete, Update for User." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement Add, Delete, Update for User." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="1" />
@@ -396,6 +435,50 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/api/UserStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="45" lean-forward="false" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/12ecedde/7681d714-b6d7-4770-96e1-82c9f2f23cf1/daca.users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/mappers/UserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/impl/UserStorageImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2296#2297#0" expanded="true" />
+            <element signature="e#2343#2344#0" expanded="true" />
+            <marker date="1515265929088" expanded="true" signature="764:802" ph="SELECT * FRO... users" />
+            <marker date="1515265929088" expanded="true" signature="852:911" ph="INSERT INTO users... " />
+            <marker date="1515265929088" expanded="true" signature="858:869" ph="SELECT * FRO... users" />
+            <marker date="1515265929088" expanded="true" signature="961:997" ph="DELETE FROM users... " />
+            <marker date="1515265929088" expanded="true" signature="972:997" ph="INSERT INTO users... " />
+            <marker date="1515265929088" expanded="true" signature="1047:1239" ph="UPDATE usersSET... " />
+            <marker date="1515265929088" expanded="true" signature="1053:1239" ph="DELETE FROM users... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/api/UserStorage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -427,7 +510,16 @@
         <state relative-caret-position="425">
           <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <marker date="1515249492563" expanded="true" signature="712:750" ph="SELECT * FRO... users" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2296#2297#0" expanded="true" />
+            <element signature="e#2343#2344#0" expanded="true" />
+            <marker date="1515265929088" expanded="true" signature="764:802" ph="SELECT * FRO... users" />
+            <marker date="1515265929088" expanded="true" signature="852:911" ph="INSERT INTO users... " />
+            <marker date="1515265929088" expanded="true" signature="858:869" ph="SELECT * FRO... users" />
+            <marker date="1515265929088" expanded="true" signature="961:997" ph="DELETE FROM users... " />
+            <marker date="1515265929088" expanded="true" signature="972:997" ph="INSERT INTO users... " />
+            <marker date="1515265929088" expanded="true" signature="1047:1239" ph="UPDATE usersSET... " />
+            <marker date="1515265929088" expanded="true" signature="1053:1239" ph="DELETE FROM users... " />
           </folding>
         </state>
       </provider>
@@ -445,7 +537,16 @@
         <state relative-caret-position="85">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding>
-            <marker date="1515249492563" expanded="true" signature="712:750" ph="SELECT * FRO... users" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2296#2297#0" expanded="true" />
+            <element signature="e#2343#2344#0" expanded="true" />
+            <marker date="1515265929088" expanded="true" signature="764:802" ph="SELECT * FRO... users" />
+            <marker date="1515265929088" expanded="true" signature="852:911" ph="INSERT INTO users... " />
+            <marker date="1515265929088" expanded="true" signature="858:869" ph="SELECT * FRO... users" />
+            <marker date="1515265929088" expanded="true" signature="961:997" ph="DELETE FROM users... " />
+            <marker date="1515265929088" expanded="true" signature="972:997" ph="INSERT INTO users... " />
+            <marker date="1515265929088" expanded="true" signature="1047:1239" ph="UPDATE usersSET... " />
+            <marker date="1515265929088" expanded="true" signature="1053:1239" ph="DELETE FROM users... " />
           </folding>
         </state>
       </provider>
@@ -483,7 +584,16 @@
         <state relative-caret-position="85">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding>
-            <marker date="1515249492563" expanded="true" signature="712:750" ph="SELECT * FRO... users" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2296#2297#0" expanded="true" />
+            <element signature="e#2343#2344#0" expanded="true" />
+            <marker date="1515265929088" expanded="true" signature="764:802" ph="SELECT * FRO... users" />
+            <marker date="1515265929088" expanded="true" signature="852:911" ph="INSERT INTO users... " />
+            <marker date="1515265929088" expanded="true" signature="858:869" ph="SELECT * FRO... users" />
+            <marker date="1515265929088" expanded="true" signature="961:997" ph="DELETE FROM users... " />
+            <marker date="1515265929088" expanded="true" signature="972:997" ph="INSERT INTO users... " />
+            <marker date="1515265929088" expanded="true" signature="1047:1239" ph="UPDATE usersSET... " />
+            <marker date="1515265929088" expanded="true" signature="1053:1239" ph="DELETE FROM users... " />
           </folding>
         </state>
       </provider>
@@ -522,13 +632,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/12ecedde/7681d714-b6d7-4770-96e1-82c9f2f23cf1/daca.users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/dataobjects/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -536,31 +639,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/mappers/UserMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/api/UserStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/spring-jdbc-4.3.13.RELEASE.jar!/org/springframework/jdbc/core/namedparam/NamedParameterJdbcTemplate.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="40" column="62" lean-forward="true" selection-start-line="40" selection-start-column="62" selection-end-line="40" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -601,13 +679,70 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/Main.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/impl/UserManagementServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/mappers/UserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/api/UserManagementService.java" />
+    <entry file="jar://$PROJECT_DIR$/lib/spring-jdbc-4.3.13.RELEASE.jar!/org/springframework/jdbc/core/namedparam/NamedParameterJdbcTemplate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="159" column="15" lean-forward="false" selection-start-line="159" selection-start-column="15" selection-end-line="159" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/spring-jdbc-4.3.13.RELEASE-sources.jar!/org/springframework/jdbc/core/namedparam/NamedParameterJdbcOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="233" column="58" lean-forward="false" selection-start-line="233" selection-start-column="39" selection-end-line="233" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/spring-jdbc-4.3.13.RELEASE-sources.jar!/org/springframework/jdbc/core/namedparam/NamedParameterJdbcTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="207" column="17" lean-forward="false" selection-start-line="207" selection-start-column="17" selection-end-line="207" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/12ecedde/7681d714-b6d7-4770-96e1-82c9f2f23cf1/daca.users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/impl/UserStorageImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="70" lean-forward="true" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
+        <state relative-caret-position="1241">
+          <caret line="106" column="40" lean-forward="false" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
           <folding>
-            <marker date="1515249492563" expanded="true" signature="712:750" ph="SELECT * FRO... users" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2296#2297#0" expanded="true" />
+            <element signature="e#2343#2344#0" expanded="true" />
+            <marker date="1515265929088" expanded="true" signature="764:802" ph="SELECT * FRO... users" />
+            <marker date="1515265929088" expanded="true" signature="852:911" ph="INSERT INTO users... " />
+            <marker date="1515265929088" expanded="true" signature="858:869" ph="SELECT * FRO... users" />
+            <marker date="1515265929088" expanded="true" signature="961:997" ph="DELETE FROM users... " />
+            <marker date="1515265929088" expanded="true" signature="972:997" ph="INSERT INTO users... " />
+            <marker date="1515265929088" expanded="true" signature="1047:1239" ph="UPDATE usersSET... " />
+            <marker date="1515265929088" expanded="true" signature="1053:1239" ph="DELETE FROM users... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wade/daca/management/api/UserStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -628,7 +763,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Spring</last-edited>
+          <last-edited>Spring (DaCAUserManagement)|Spring</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -675,7 +810,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>mysql-connector-java-5.1.45-bin</last-edited>
+          <last-edited>Spring Data JPA-1.3.3</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
