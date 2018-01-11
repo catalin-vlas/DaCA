@@ -1,9 +1,0 @@
-DROP TABLE IF EXISTS users;
-
-CREATE TABLE users
-(
-    id VARCHAR(64) PRIMARY KEY,
-    name VARCHAR(128) NOT NULL,
-    password VARCHAR(128) NOT NULL
-);
-
