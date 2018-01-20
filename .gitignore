@@ -4,7 +4,10 @@
 *.jar
 
 *.class
+*.jnl
 
 app/DaCAServices/DaCAStats/.idea/*
 app/DaCAServices/DaCAUserManagement/.idea/*
 app/DaCAServices/DaCAUserUploader/.idea/*
+app/DaCAServices/DaCAUploader/.idea/workspace.xml___jb_old___
+app/DaCAServices/DaCAUserManagement/.idea/workspace.xml

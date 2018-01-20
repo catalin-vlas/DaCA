@@ -1,0 +1,250 @@
+swagger: '2.0'
+info:
+  description: >-
+    This is a sample server Petstore server.  You can find out more about    
+    Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
+    #swagger](http://swagger.io/irc/).      For this sample, you can use the api
+    key `special-key` to test the authorization     filters.
+  version: 1.0.0
+  title: SparqlProcessor
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: 'localhost:1994'
+basePath: /
+tags:
+  - name: Namespace
+    description: RdfService Namespace
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+  - name: Triples
+    description: RdfService Triples
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+  - name: Sparql
+    description: RdfService Sparql
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+schemes:
+  - http
+paths:
+  /namespace/:
+    get:
+      tags:
+        - Namespace
+      summary: Get namespaces
+      description: ''
+      operationId: getNamespaces
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              type: string
+        '405':
+          description: Invalid input
+  '/namespace/{namespaceId}':
+    post:
+      tags:
+        - Namespace
+      summary: Create a new namespace
+      description: ''
+      operationId: createNamespace
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: namespaceId
+          in: path
+          description: The namespace to be created
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Namespace
+      summary: Delete a namespace
+      description: ''
+      operationId: deleteNamespace
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: namespaceId
+          in: path
+          description: The namespace to be deleted
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+        '405':
+          description: Invalid input
+  '/triples/{namespaceId}':
+    get:
+      tags:
+        - Triples
+      summary: Get triples of given namespace
+      description: ''
+      operationId: getTriples
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: namespaceId
+          in: path
+          description: The namespace to be created
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RdfTriple'
+        '405':
+          description: Invalid input
+    post:
+      tags:
+        - Triples
+      summary: Add triples in given namespace
+      description: ''
+      operationId: addTriples
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: namespaceId
+          in: path
+          description: The namespace in which triples are added
+          type: string
+          required: true
+        - name: triples
+          description: The array of triples
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RdfTriple'
+      responses:
+        '200':
+          description: Success
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - Triples
+      summary: Add triples from file in given namespace
+      description: ''
+      operationId: addTriplesFromFile
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: namespaceId
+          in: path
+          description: The namespace in which triples are added
+          type: string
+          required: true
+        - name: file
+          in: formData
+          description: File containing triples
+          required: false
+          type: file
+      responses:
+        '200':
+          description: Success
+        '405':
+          description: Invalid input
+  /sparql/query:
+    get:
+      tags:
+        - Sparql
+      summary: Execute custom SPARQL query
+      description: ''
+      operationId: executeSparqlQuery
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: namespaceId
+          in: query
+          description: The namespace in which the query is run
+          type: string
+          required: true
+        - name: query
+          in: query
+          description: The SPARQL query to be executed
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RdfTriple'
+        '405':
+          description: Invalid input
+    post:
+      tags:
+        - Sparql
+      summary: Execute custom update SPARQL query
+      description: ''
+      operationId: executeSparqlUpdate
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: namespaceId
+          in: query
+          description: The namespace in which the query is run
+          type: string
+          required: true
+        - name: query
+          in: query
+          description: The SPARQL query to be executed
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+        '405':
+          description: Invalid input
+definitions:
+  RdfTriple:
+    type: object
+    properties:
+      subject:
+        type: string
+      predicate:
+        type: string
+      object:
+        type: string
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
