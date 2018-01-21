@@ -1,13 +1,12 @@
-
-*.xml
-
 *.jar
 
 *.class
 *.jnl
 
+app/DaCAServices/.idea/*
+app/DaCAServices/DaCACompare/.idea/*
+app/DaCAServices/DaCAMatchAlign/.idea/*
+app/DaCAServices/DaCASparqlProcessor/.idea/*
 app/DaCAServices/DaCAStats/.idea/*
+app/DaCAServices/DaCAUploader/.idea/*
 app/DaCAServices/DaCAUserManagement/.idea/*
-app/DaCAServices/DaCAUserUploader/.idea/*
-app/DaCAServices/DaCAUploader/.idea/workspace.xml___jb_old___
-app/DaCAServices/DaCAUserManagement/.idea/workspace.xml
