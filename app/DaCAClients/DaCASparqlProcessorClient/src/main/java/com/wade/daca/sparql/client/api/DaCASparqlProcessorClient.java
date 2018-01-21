@@ -6,13 +6,13 @@ import com.wade.daca.sparql.client.model.RdfTriple;
 import java.io.File;
 import java.util.List;
 
-public class DaCASpaqrlProcessorClient {
+public class DaCASparqlProcessorClient {
 
     private NamespaceApi namespaceApi;
     private SparqlApi sparqlApi;
     private TriplesApi triplesApi;
 
-    public DaCASpaqrlProcessorClient() {
+    public DaCASparqlProcessorClient() {
         namespaceApi = new NamespaceApi();
         sparqlApi = new SparqlApi();
         triplesApi = new TriplesApi();
