@@ -10,3 +10,4 @@ app/DaCAServices/DaCASparqlProcessor/.idea/*
 app/DaCAServices/DaCAStats/.idea/*
 app/DaCAServices/DaCAUploader/.idea/*
 app/DaCAServices/DaCAUserManagement/.idea/*
+app/DaCAClients/DaCASparqlProcessorClient/.idea/*
