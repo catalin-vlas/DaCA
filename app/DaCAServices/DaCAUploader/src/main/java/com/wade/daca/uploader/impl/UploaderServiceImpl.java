@@ -3,14 +3,17 @@ package com.wade.daca.uploader.impl;
 import com.wade.daca.sparql.client.ApiException;
 import com.wade.daca.sparql.client.api.DaCASparqlProcessorClient;
 import com.wade.daca.uploader.api.UploaderService;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Random;
 
 @RestController
 public class UploaderServiceImpl implements UploaderService {
@@ -23,16 +26,42 @@ public class UploaderServiceImpl implements UploaderService {
     }
 
     @Override
-    @RequestMapping(value = "/upload/{namespaceId}/{url}", method = RequestMethod.PUT)
-    public String addTriplesFromUrl(@PathVariable("namespaceId") String namespaceId, @PathVariable("url") String url) {
+    @RequestMapping(value = "/upload/{namespaceId}", method = RequestMethod.POST)
+    public String addTriplesFromUrl(@PathVariable("namespaceId") String namespaceId,
+                                    @RequestParam("url") String url) {
         String result = "Success";
+
+        try {
+            Random random = new Random();
+            URL u = new URL(url);
+
+            File convertedFile = new File(namespaceId + random.nextLong());
+            FileOutputStream fos = new FileOutputStream(convertedFile);
+
+            URLConnection connection = u.openConnection();
+            IOUtils.copy(connection.getInputStream(), fos);
+
+            fos.close();
+
+            // create the namespace (if it doesn't already exist)
+            sparqlProcessorClient.createNamespace(namespaceId);
+
+            // add the triples to the new namespace
+            sparqlProcessorClient.addTriplesFromFile(namespaceId, convertedFile);
+
+            convertedFile.delete();
+        } catch (IOException | ApiException e) {
+            e.printStackTrace();
+            result = "Failure";
+        }
 
         return result;
     }
 
     @Override
     @RequestMapping(value = "/upload/{namespaceId}", method = RequestMethod.PUT)
-    public String addTriplesFromFile(@PathVariable("namespaceId") String namespaceId, @RequestParam("file")  MultipartFile file) {
+    public String addTriplesFromFile(@PathVariable("namespaceId") String namespaceId,
+                                     @RequestParam("file")  MultipartFile file) {
         String result = "Success";
 
         File convertedFile = new File(file.getOriginalFilename());
@@ -46,10 +75,7 @@ public class UploaderServiceImpl implements UploaderService {
 
             // add the triples to the new namespace
             sparqlProcessorClient.addTriplesFromFile(namespaceId, convertedFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-            result = "Failure";
-        } catch (ApiException e) {
+        } catch (IOException | ApiException e) {
             e.printStackTrace();
             result = "Failure";
         }
