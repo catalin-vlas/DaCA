@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DaCASparqlProcessorClient:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/DaCASparqlProcessorClient_jar</output-path>
+    <root id="archive" name="DaCASparqlProcessorClient.jar">
+      <element id="module-output" name="DaCASparqlProcessorClient" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okhttp/okhttp/2.7.5/okhttp-2.7.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.1/gson-2.8.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okhttp/logging-interceptor/2.7.5/logging-interceptor-2.7.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/joda-time/joda-time/2.9.9/joda-time-2.9.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okio/okio/1.6.0/okio-1.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/swagger/swagger-annotations/1.5.15/swagger-annotations-1.5.15.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: io.swagger:swagger-annotations:1.5.15" />
+      <element id="library" level="project" name="Maven: com.squareup.okhttp:okhttp:2.7.5" />
+      <element id="library" level="project" name="Maven: com.squareup.okio:okio:1.6.0" />
+      <element id="library" level="project" name="Maven: com.squareup.okhttp:logging-interceptor:2.7.5" />
+      <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.1" />
+      <element id="library" level="project" name="Maven: joda-time:joda-time:2.9.9" />
+    </root>
+  </artifact>
+</component>
