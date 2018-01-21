@@ -28,4 +28,12 @@ public interface SparqlService {
     @RequestMapping(value = "/triples/{namespaceId}", method = RequestMethod.PUT)
     String addTriplesFromFile(@PathVariable("namespaceId") String namespaceId,
                               @RequestParam("file") MultipartFile file);
+
+    @RequestMapping(value = "/sparql/query", method = RequestMethod.GET)
+    List<RdfTriple> executeSparqlQuery(@RequestParam(value = "namespaceId", required = true) String namespaceId,
+                                       @RequestParam(value = "query", required = true) String query);
+
+    @RequestMapping(value = "/sparql/query", method = RequestMethod.POST)
+    String executeSparqlUpdate(@RequestParam(value = "namespaceId", required = true) String namespaceId,
+                               @RequestParam(value = "query", required = true) String query);
 }

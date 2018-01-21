@@ -134,4 +134,43 @@ public class SparqlServiceImpl implements SparqlService {
 
         return result;
     }
+
+    @Override
+    @RequestMapping(value = "/sparql/query", method = RequestMethod.GET)
+    public List<RdfTriple> executeSparqlQuery(@RequestParam(value = "namespaceId", required = true) String namespaceId,
+                                              @RequestParam(value = "query", required = true) String query) {
+        ArrayList<RdfTriple> result = new ArrayList<>();
+
+        try {
+            ArrayList<BindingSet> values = rdfStorageHelper.executeCustomQuery(namespaceId, query);
+
+            for (BindingSet value : values) {
+                RdfTriple rdfTriple = new RdfTriple(value.getValue("s").stringValue(),
+                        value.getValue("p").stringValue(),
+                        value.getValue("o").stringValue());
+
+                result.add(rdfTriple);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    @Override
+    @RequestMapping(value = "/sparql/query", method = RequestMethod.POST)
+    public String executeSparqlUpdate(@RequestParam(value = "namespaceId", required = true) String namespaceId,
+                                      @RequestParam(value = "query", required = true) String query) {
+        String result = "Success";
+
+        try {
+            rdfStorageHelper.executeCustomUpdate(namespaceId, query);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = "Failure";
+        }
+
+        return result;
+    }
 }
