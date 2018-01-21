@@ -1,0 +1,13 @@
+_:node8881d5278a44aaf810bd74f10c74f4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/wo/species> <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:node8881d5278a44aaf810bd74f10c74f4 <http://purl.org/ontology/wo/order> _:node75fcef9a9bec86992eb3e5bb8f9173c <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:node75fcef9a9bec86992eb3e5bb8f9173c <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/wo/Order> <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:node75fcef9a9bec86992eb3e5bb8f9173c <http://purl.org/ontology/wo/orderName> "Mononegavirales" <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:node8881d5278a44aaf810bd74f10c74f4 <http://purl.org/ontology/wo/family> _:node1852f9e8dd5bd69b7bf67ce3780d745 <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:node1852f9e8dd5bd69b7bf67ce3780d745 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/wo/Family> <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:node1852f9e8dd5bd69b7bf67ce3780d745 <http://purl.org/ontology/wo/familyName> "Paramyxoviridae" <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:node8881d5278a44aaf810bd74f10c74f4 <http://purl.org/ontology/wo/genus> _:nodeb126a3f67dfea633f55630bc11119ece <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:nodeb126a3f67dfea633f55630bc11119ece <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/wo/Genus> <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:nodeb126a3f67dfea633f55630bc11119ece <http://purl.org/ontology/wo/genusName> "Rubulavirus" <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:node8881d5278a44aaf810bd74f10c74f4 <http://purl.org/ontology/wo/species> _:node1a933bdcbd58a79692ddd05b1e6220fa <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:node1a933bdcbd58a79692ddd05b1e6220fa <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/wo/Species> <https://en.wikipedia.org/wiki/Tioman_virus>   .
+_:node1a933bdcbd58a79692ddd05b1e6220fa <http://purl.org/ontology/wo/speciesName> "Tioman virus" <https://en.wikipedia.org/wiki/Tioman_virus>   .
