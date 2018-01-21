@@ -26,9 +26,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-    <groupId>io.swagger</groupId>
-    <artifactId>swagger-java-client</artifactId>
-    <version>1.0.0</version>
+      <groupId>com.wade.daca.sparql</groupId>
+      <artifactId>DaCASparqlProcessorClient</artifactId>
+      <name>DaCASparqlProcessorClient</name>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "io.swagger:swagger-java-client:1.0.0"
+compile "com.wade.daca.sparql:DaCASparqlProcessorClient:1.0.0"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/swagger-java-client-1.0.0.jar
+* target/DaCASparqlProcessorClient-1.0.0.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -58,10 +58,9 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.NamespaceApi;
+import com.wade.daca.sparql.client.auth.*;
+import com.wade.daca.sparql.client.model.*;
+import com.wade.daca.sparql.client.api.NamespaceApi;
 
 import java.io.File;
 import java.util.*;
@@ -115,5 +114,7 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 
 ## Author
 
-apiteam@swagger.io
+aurelian.hreapca@info.uaic.ro
+catalin.vlas@info.uaic.ro
+virgil.barcan@info.uaic.ro
 
