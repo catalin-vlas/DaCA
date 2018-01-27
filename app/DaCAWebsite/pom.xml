@@ -5,7 +5,7 @@
 	<artifactId>DaCAWebsite</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
-	<name>DaCA' Website</name>
+	<name>DaCA's Website</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
