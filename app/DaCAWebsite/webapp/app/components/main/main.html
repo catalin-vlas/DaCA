@@ -12,7 +12,9 @@
             </md-button>
             <md-menu-content width="4">
                 <md-menu-item>
-                    <md-button aria-label="Dashboard">Dashboard</md-button>
+                    <md-button aria-label="Dashboard" ng-click="vm.changePage(vm.pages.DATASETS.DASHBOARD)">
+                        Dashboard
+                    </md-button>
                 </md-menu-item>
                 <md-menu-item>
                     <md-button aria-label="Compare">Compare</md-button>
@@ -34,4 +36,8 @@
 </md-toolbar>
 
 <upload-dataset ng-if="vm.activePage === vm.pages.UPLOAD"></upload-dataset>
+<datasets-dashboard ng-if="vm.activePage === vm.pages.DATASETS.DASHBOARD"
+    on-set-individual-dataset="vm.setIndividualDataset(dataset)">
+</datasets-dashboard>
+<single-dataset ng-if="vm.activePage === vm.pages.DATASETS.SINGLE" dataset="vm.dataset"></single-dataset>
 <help ng-if="vm.activePage === vm.pages.HELP"></help>

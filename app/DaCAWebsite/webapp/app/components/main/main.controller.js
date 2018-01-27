@@ -15,6 +15,7 @@
             UPLOAD: 'upload',
             DATASETS: {
                 DASHBOARD: 'dashboard',
+                SINGLE: 'single',
                 COMPARE: 'compare',
                 MATCH_ALIGN: 'match_align'
             },
@@ -32,6 +33,11 @@
 
         vm.changePage = function(page) {
             vm.activePage = page;
-        }
+        };
+
+        vm.setIndividualDataset = function(dataset) {
+            vm.dataset = dataset;
+            vm.changePage(vm.pages.DATASETS.SINGLE);
+        };
     }
 })();
