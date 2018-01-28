@@ -32,10 +32,9 @@ public class UploaderServiceImpl implements UploaderService {
         String result = "Success";
 
         try {
-            Random random = new Random();
             URL u = new URL(url);
 
-            File convertedFile = new File(namespaceId + random.nextLong());
+            File convertedFile = new File(namespaceId + System.currentTimeMillis());
             FileOutputStream fos = new FileOutputStream(convertedFile);
 
             URLConnection connection = u.openConnection();

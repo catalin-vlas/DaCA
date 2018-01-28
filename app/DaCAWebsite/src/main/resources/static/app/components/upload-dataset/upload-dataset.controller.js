@@ -6,10 +6,11 @@
         .controller('UploadDatasetCtrl', UploadDatasetCtrl);
 
 
-    UploadDatasetCtrl.$inject = [];
+    UploadDatasetCtrl.$inject = ['$http'];
 
-    function UploadDatasetCtrl() {
+    function UploadDatasetCtrl($http) {
         let vm = this;
+        let UPLOAD_DATASET_URL = "http://localhost:1995/upload/{datasetName}";
 
         vm.datasetsInProgress = [];
 
@@ -19,12 +20,17 @@
         };
 
         vm.addDataset = function() {
-            vm.datasetsInProgress.push({
-                'name': vm.datasetName,
-                'url': vm.fileUrl,
-                'progress': Math.random() * 100.0
+            uploadDataset(vm.datasetName, vm.fileUrl).then(function success(response) {
+                console.log("addDataset", response);
+                vm.datasetsInProgress.push({
+                    'name': vm.datasetName,
+                    'url': vm.fileUrl,
+                    'progress': Math.random() * 100.0
+                });
+                vm.clearDataset();
+            }, function error(response) {
+                alert("Error!\n" + response);
             });
-            vm.clearDataset();
         };
 
         vm.removeDatasetInProgress = function(dataset) {
@@ -35,5 +41,19 @@
                 }
             }
         };
+
+        function uploadDataset(datasetName, fileUrl) {
+            return $http({
+                method: "POST",
+                url: UPLOAD_DATASET_URL.replace("{datasetName}", datasetName),
+                params: {
+                    'url': fileUrl
+                }
+            }).then(function success(response) {
+                return response;
+            }, function error(response) {
+                return response;
+            });
+        }
     }
 })();
