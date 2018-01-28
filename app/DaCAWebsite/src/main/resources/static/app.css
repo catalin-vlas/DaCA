@@ -1,4 +1,5 @@
-#graphs {
+#graphs,
+#compare {
     height: 100%;
     width: 100%;
 }
@@ -6,12 +7,6 @@
 .activeGraph {
     background-color: #E1F5FE;
     font-weight: 600;
-}
-
-#graphs md-content,
-#graphs md-list-item {
-    min-width: 100%;
-    width: 100%;
 }
 
 /*

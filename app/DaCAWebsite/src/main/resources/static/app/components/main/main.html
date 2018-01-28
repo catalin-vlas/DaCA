@@ -17,7 +17,7 @@
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button aria-label="Compare">Compare</md-button>
+                    <md-button aria-label="Compare" ng-click="vm.changePage(vm.pages.DATASETS.COMPARE)">Compare</md-button>
                 </md-menu-item>
                 <md-menu-item>
                     <md-button aria-label="Match/Align">Match/Align</md-button>
@@ -40,4 +40,5 @@
     on-set-individual-dataset="vm.setIndividualDataset(dataset)">
 </datasets-dashboard>
 <single-dataset ng-if="vm.activePage === vm.pages.DATASETS.SINGLE" dataset="vm.dataset"></single-dataset>
+<compare-datasets ng-if="vm.activePage === vm.pages.DATASETS.COMPARE"></compare-datasets>
 <help ng-if="vm.activePage === vm.pages.HELP"></help>

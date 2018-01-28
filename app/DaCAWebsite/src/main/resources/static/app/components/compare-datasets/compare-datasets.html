@@ -1,0 +1,38 @@
+<div id="compare" layout="row" flex>
+    <md-sidenav class="md-sidenav-left"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-xs')"
+                md-whiteframe="8"
+                layout="column" layout-align="start center" flex="25">
+
+        <md-toolbar class="md-hue-2" layout="row" layout-align="center center">
+            <span class="md-headline">Compare</span>
+        </md-toolbar>
+
+        <md-content layout="column" layout-padding style="min-width:100%">
+            <md-input-container>
+                <md-select ng-model="vm.firstDataset">
+                    <md-option ng-value="dataset" ng-repeat="dataset in vm.datasets">{{ dataset.name }}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <md-select ng-model="vm.secondDataset">
+                    <md-option ng-value="dataset" ng-repeat="dataset in vm.datasets">{{ dataset.name }}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container>
+                <md-select ng-model="vm.operation">
+                    <md-option ng-value="operation" ng-repeat="operation in vm.operations">{{ operation }}</md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-button ng-click="vm.submit()">Submit</md-button>
+        </md-content>
+    </md-sidenav>
+
+    <div flex="75" layout="row" layout-align="center center">
+        <div id="svg-body-compare" class="panel-body"></div>
+    </div>
+</div>
