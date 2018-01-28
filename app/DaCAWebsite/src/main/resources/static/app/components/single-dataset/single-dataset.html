@@ -1,0 +1,35 @@
+<div id="graphs" layout="row" flex>
+    <md-sidenav class="md-sidenav-left"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-xs')"
+                md-whiteframe="8"
+                layout="column" layout-align="start center" flex="20">
+
+        <md-toolbar class="md-hue-2" layout="row" layout-align="center center">
+            <span class="md-headline">Graphs</span>
+        </md-toolbar>
+
+        <md-content layout="column" layout-padding style="min-width:100%">
+            <md-list class="md-dense"
+                     layout="column" layout-align="start center" layout-margin>
+                <md-list-item
+                        style="min-width:100%"
+                        class="md-long-text" md-no-ink
+                        md-whiteframe="1"
+                        ng-class="{'activeGraph': vm.selectedGraph.name === graph.name}"
+                        ng-repeat="graph in vm.dataset.graphs"
+                        ng-click="vm.selectGraph($event, graph)">
+                    <div class="md-list-item-text md-truncate">
+                        <span class="md-subhead">{{graph.name}}</span>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+
+    <div flex="80" layout="row" layout-align="center center">
+        <span class="md-heading" ng-show="vm.selectedGraph">
+            Visualize {{vm.selectedGraph.name}}
+        </span>
+    </div>
+</div>

@@ -1,1 +1,0 @@
-"use strict";angular.module("myApp").factory("EventsService",["$http","$q",function(e,b){var c="http://localhost:8080/TradingNetworksWebsite/event/";var a={getAllEvents:d};return a;function d(){console.log("Fetch all events");var f=b.defer();e.get(c).then(function(g){f.resolve(g.data)},function(g){console.error("Error while getting all games");f.reject(g)});return f.promise}}]);
