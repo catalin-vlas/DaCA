@@ -12,4 +12,6 @@ app/DaCAServices/DaCAStats/.idea/*
 app/DaCAServices/DaCAUploader/.idea/*
 app/DaCAServices/DaCAUserManagement/.idea/*
 app/DaCAClients/DaCASparqlProcessorClient/.idea/*
+app/DaCAWebsite/.idea/*
+app/DaCAWebsite/target/*
 !app/DaCAClients/DaCASparqlProcessorClient/.idea/artifacts
