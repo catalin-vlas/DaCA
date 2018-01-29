@@ -15,3 +15,4 @@ app/DaCAClients/DaCASparqlProcessorClient/.idea/*
 app/DaCAWebsite/.idea/*
 app/DaCAWebsite/target/*
 !app/DaCAClients/DaCASparqlProcessorClient/.idea/artifacts
+app/DaCAWebsite/.idea/workspace.xml

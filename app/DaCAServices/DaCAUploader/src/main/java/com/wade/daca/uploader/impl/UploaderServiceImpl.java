@@ -58,10 +58,11 @@ public class UploaderServiceImpl implements UploaderService {
     }
 
     @Override
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(value = "/upload/{namespaceId}", method = RequestMethod.PUT)
     public String addTriplesFromFile(@PathVariable("namespaceId") String namespaceId,
                                      @RequestParam("file")  MultipartFile file) {
-        String result = "Success";
+        String result = "\"Success\"";
 
         File convertedFile = new File(file.getOriginalFilename());
         try {
@@ -76,7 +77,7 @@ public class UploaderServiceImpl implements UploaderService {
             sparqlProcessorClient.addTriplesFromFile(namespaceId, convertedFile);
         } catch (IOException | ApiException e) {
             e.printStackTrace();
-            result = "Failure";
+            result = "\"Failure\"";
         }
 
         return result;
