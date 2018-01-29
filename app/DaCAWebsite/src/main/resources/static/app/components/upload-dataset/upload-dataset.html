@@ -18,8 +18,8 @@
                             <input md-maxlength="255" name="file_url" ng-model="vm.fileUrl">
                         </md-input-container>
                         <md-input-container flex="30">
-                            <input class="ng-hide" id="input-file-id" type="file" mg-model="filePath"/>
-                            <label for="input-file-id" class="md-button md-raised">Dataset File</label>
+                            <input class="ng-hide" id="input-file-id" type="file" file-model ng-model="vm.filePath"/>
+                            <md-button class="md-button md-raised" ng-click="vm.openInputFile($event);">Dataset File</md-button>
                         </md-input-container>
                     </div>
                 </form>

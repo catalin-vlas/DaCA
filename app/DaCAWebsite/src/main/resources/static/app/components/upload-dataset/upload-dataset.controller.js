@@ -6,9 +6,9 @@
         .controller('UploadDatasetCtrl', UploadDatasetCtrl);
 
 
-    UploadDatasetCtrl.$inject = ['$http'];
+    UploadDatasetCtrl.$inject = ['$http', '$timeout'];
 
-    function UploadDatasetCtrl($http) {
+    function UploadDatasetCtrl($http, $timeout) {
         let vm = this;
         let UPLOAD_DATASET_URL = "http://localhost:1995/upload/{datasetName}";
 
@@ -20,17 +20,37 @@
         };
 
         vm.addDataset = function() {
-            uploadDataset(vm.datasetName, vm.fileUrl).then(function success(response) {
-                console.log("addDataset", response);
-                vm.datasetsInProgress.push({
-                    'name': vm.datasetName,
-                    'url': vm.fileUrl,
-                    'progress': Math.random() * 100.0
+            if(!vm.fileUrl && !vm.filePath) {
+                alert("Insert URL or local path to desired file.");
+                return;
+            }
+            if(vm.fileUrl && vm.filePath) {
+                alert("Insert only one of the URL or local path.");
+                return;
+            }
+            if(vm.fileUrl) {
+                uploadDatasetUrl(vm.datasetName, vm.fileUrl).then(function success(response) {
+                    vm.datasetsInProgress.push({
+                        'name': vm.datasetName,
+                        'url': vm.fileUrl,
+                        'progress': Math.random() * 100.0
+                    });
+                    vm.clearDataset();
+                }, function error(response) {
+                    alert("Error!\n" + response);
                 });
-                vm.clearDataset();
-            }, function error(response) {
-                alert("Error!\n" + response);
-            });
+            } else {
+                uploadDatasetPath(vm.datasetName, vm.filePath[0]).then(function success(response) {
+                    vm.datasetsInProgress.push({
+                        'name': vm.datasetName,
+                        'url': vm.filePath[0].name,
+                        'progress': Math.random() * 100.0
+                    });
+                    vm.clearDataset();
+                }, function error(response) {
+                    alert("Error!\n" + response);
+                });
+            }
         };
 
         vm.removeDatasetInProgress = function(dataset) {
@@ -42,13 +62,34 @@
             }
         };
 
-        function uploadDataset(datasetName, fileUrl) {
+        vm.openInputFile = function(ev) {
+            ev.stopPropagation();
+            $timeout(function() {
+                document.querySelector('#input-file-id').click();
+            }, 0);
+        };
+
+        function uploadDatasetUrl(datasetName, fileUrl) {
             return $http({
                 method: "POST",
                 url: UPLOAD_DATASET_URL.replace("{datasetName}", datasetName),
                 params: {
                     'url': fileUrl
                 }
+            }).then(function success(response) {
+                return response;
+            }, function error(response) {
+                return response;
+            });
+        }
+
+        function uploadDatasetPath(datasetName, file) {
+            let formData = new FormData();
+            formData.append("file", file);
+            return $http({
+                method: "PUT",
+                url: UPLOAD_DATASET_URL.replace("{datasetName}", datasetName),
+                params: formData
             }).then(function success(response) {
                 return response;
             }, function error(response) {
