@@ -28,7 +28,7 @@
                 </md-select>
             </md-input-container>
 
-            <md-button ng-click="vm.submit()">Submit</md-button>
+            <md-button ng-click="vm.submit()" ng-disabled="!vm.firstDataset || !vm.secondDataset || !vm.operation">Submit</md-button>
         </md-content>
     </md-sidenav>
 
