@@ -28,82 +28,91 @@ public class CompareServiceImpl implements CompareService{
         sparqlProcessorClient = new DaCASparqlProcessorClient();
     }
 
+    @Override
     @RequestMapping(value = "/compare/union/{namespaceId1}/{namespaceId2}", method = RequestMethod.GET)
     public ArrayList<RdfTriple> constructNamespaceUnion(@PathVariable("namespaceId1") String namespaceId1,
                                                         @PathVariable("namespaceId2") String namespaceId2) throws ApiException {
-        ArrayList<RdfTriple> result = new ArrayList<>();
-        ArrayList<RdfTriple> graph1 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId1);
-        ArrayList<RdfTriple> graph2 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId2);
+        return getNamespaceUnion(namespaceId1, namespaceId2);
+    }
 
-        for (int i=0; i<graph2.size(); ++i) graph1.add(graph2.get(i));
-
-        HashMap<String, Integer> hitMap = new HashMap<>();
-
-        for (int i=0; i<graph1.size(); ++i) {
-            String key = graph1.get(i).toString();
-            Integer value = hitMap.get(key);
-
-            if (value==null) {
-                result.add(graph1.get(i));
-                hitMap.put(key, new Integer(1));
+    @Override
+    @RequestMapping(value = "/export/union/{namespaceId1}/{namespaceId2}", method = RequestMethod.GET)
+    public void exportNamespaceUnion(@PathVariable("namespaceId1") String namespaceId1,
+                                     @PathVariable("namespaceId2") String namespaceId2,
+                                     @RequestParam(value = "format", required = false) String format,
+                                     HttpServletResponse response) throws ApiException {
+        if(format == null || format.equals("n3")) {
+            List<RdfTriple> triples = getNamespaceUnion(namespaceId1, namespaceId2);
+            response.setHeader("Content-disposition", "attachment; filename=union.n3");
+            try (OutputStream os = response.getOutputStream()) {
+                for(RdfTriple triple: triples) {
+                    String line = triple.getSubject() + " " + triple.getPredicate() + " " + triple.getObject() + "\n";
+                    os.write(line.getBytes());
+                }
+            } catch(Exception e) {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
             }
+        } else {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Bad format.");
         }
-
-        return result;
     }
 
     @Override
     @RequestMapping(value = "/compare/intersection/{namespaceId1}/{namespaceId2}", method = RequestMethod.GET)
     public ArrayList<RdfTriple> constructNamespaceIntersection(@PathVariable("namespaceId1") String namespaceId1,
                                                                @PathVariable("namespaceId2") String namespaceId2) throws ApiException {
-        ArrayList<RdfTriple> result = new ArrayList<>();
-        ArrayList<RdfTriple> graph1 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId1);
-        ArrayList<RdfTriple> graph2 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId2);
+        return getNamespaceIntersection(namespaceId1, namespaceId2);
+    }
 
-        HashMap<String, Integer> hitMap = new HashMap<>();
-
-        for (int i=0; i<graph1.size(); ++i) {
-            String key = graph1.get(i).toString();
-
-            hitMap.put(key, new Integer(1));
+    @Override
+    @RequestMapping(value = "/export/intersection/{namespaceId1}/{namespaceId2}", method = RequestMethod.GET)
+    public void exportNamespaceIntersection(@PathVariable("namespaceId1") String namespaceId1,
+                                            @PathVariable("namespaceId2") String namespaceId2,
+                                            @RequestParam(value = "format", required = false) String format,
+                                            HttpServletResponse response) throws ApiException {
+        if(format == null || format.equals("n3")) {
+            List<RdfTriple> triples = getNamespaceIntersection(namespaceId1, namespaceId2);
+            response.setHeader("Content-disposition", "attachment; filename=intersection.n3");
+            try (OutputStream os = response.getOutputStream()) {
+                for(RdfTriple triple: triples) {
+                    String line = triple.getSubject() + " " + triple.getPredicate() + " " + triple.getObject() + "\n";
+                    os.write(line.getBytes());
+                }
+            } catch(Exception e) {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+            }
+        } else {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Bad format.");
         }
-
-        for (int i=0; i<graph2.size(); ++i) {
-            String key = graph2.get(i).toString();
-
-            Integer val = hitMap.get(key);
-
-            if (val!=null) result.add(graph2.get(i));
-        }
-
-        return result;
     }
 
     @Override
     @RequestMapping(value = "/compare/difference/{namespaceId1}/{namespaceId2}", method = RequestMethod.GET)
     public ArrayList<RdfTriple> constructNamespaceDifference(@PathVariable("namespaceId1") String namespaceId1,
                                                              @PathVariable("namespaceId2") String namespaceId2) throws ApiException {
-        ArrayList<RdfTriple> result = new ArrayList<>();
-        ArrayList<RdfTriple> graph1 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId1);
-        ArrayList<RdfTriple> graph2 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId2);
+        return getNamespaceDifference(namespaceId1, namespaceId2);
+    }
 
-        HashMap<String, Integer> hitMap = new HashMap<>();
-
-        for (int i=0; i<graph2.size(); ++i) {
-            String key = graph2.get(i).toString();
-
-            hitMap.put(key, new Integer(1));
+    @Override
+    @RequestMapping(value = "/export/difference/{namespaceId1}/{namespaceId2}", method = RequestMethod.GET)
+    public void exportNamespaceDifference(@PathVariable("namespaceId1") String namespaceId1,
+                                          @PathVariable("namespaceId2") String namespaceId2,
+                                          @RequestParam(value = "format", required = false) String format,
+                                          HttpServletResponse response) throws ApiException {
+        if(format == null || format.equals("n3")) {
+            List<RdfTriple> triples = getNamespaceDifference(namespaceId1, namespaceId2);
+            response.setHeader("Content-disposition", "attachment; filename=difference.n3");
+            try (OutputStream os = response.getOutputStream()) {
+                for(RdfTriple triple: triples) {
+                    String line = triple.getSubject() + " " + triple.getPredicate() + " " + triple.getObject() + "\n";
+                    os.write(line.getBytes());
+                }
+            } catch(Exception e) {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+            }
+        } else {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Bad format.");
         }
-
-        for (int i=0; i<graph1.size(); ++i) {
-            String key = graph1.get(i).toString();
-
-            Integer val = hitMap.get(key);
-
-            if (val==null) result.add(graph1.get(i));
-        }
-
-        return result;
     }
 
     @Override
@@ -130,6 +139,76 @@ public class CompareServiceImpl implements CompareService{
 
         if (model1.isIsomorphicWith(model2)) return "true";
         else return "false";
+    }
+
+    private ArrayList<RdfTriple> getNamespaceUnion(String namespaceId1, String namespaceId2) throws ApiException {
+        ArrayList<RdfTriple> result = new ArrayList<>();
+        ArrayList<RdfTriple> graph1 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId1);
+        ArrayList<RdfTriple> graph2 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId2);
+
+        for (int i=0; i<graph2.size(); ++i) graph1.add(graph2.get(i));
+
+        HashMap<String, Integer> hitMap = new HashMap<>();
+
+        for (int i=0; i<graph1.size(); ++i) {
+            String key = graph1.get(i).toString();
+            Integer value = hitMap.get(key);
+
+            if (value==null) {
+                result.add(graph1.get(i));
+                hitMap.put(key, new Integer(1));
+            }
+        }
+
+        return result;
+    }
+
+    private ArrayList<RdfTriple> getNamespaceIntersection(String namespaceId1, String namespaceId2) throws ApiException {
+        ArrayList<RdfTriple> result = new ArrayList<>();
+        ArrayList<RdfTriple> graph1 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId1);
+        ArrayList<RdfTriple> graph2 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId2);
+
+        HashMap<String, Integer> hitMap = new HashMap<>();
+
+        for (int i=0; i<graph1.size(); ++i) {
+            String key = graph1.get(i).toString();
+
+            hitMap.put(key, new Integer(1));
+        }
+
+        for (int i=0; i<graph2.size(); ++i) {
+            String key = graph2.get(i).toString();
+
+            Integer val = hitMap.get(key);
+
+            if (val!=null) result.add(graph2.get(i));
+        }
+
+        return result;
+    }
+
+    private ArrayList<RdfTriple> getNamespaceDifference(String namespaceId1, String namespaceId2) throws ApiException {
+        ArrayList<RdfTriple> result = new ArrayList<>();
+        ArrayList<RdfTriple> graph1 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId1);
+        ArrayList<RdfTriple> graph2 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId2);
+
+        HashMap<String, Integer> hitMap = new HashMap<>();
+
+        for (int i=0; i<graph2.size(); ++i) {
+            String key = graph2.get(i).toString();
+
+            hitMap.put(key, new Integer(1));
+        }
+
+        for (int i=0; i<graph1.size(); ++i) {
+            String key = graph1.get(i).toString();
+
+            Integer val = hitMap.get(key);
+
+            if (val==null) result.add(graph1.get(i));
+        }
+
+        return result;
     }
 
 }

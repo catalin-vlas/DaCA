@@ -11,7 +11,9 @@
     function CompareDatasetsCtrl($http) {
         let vm = this;
         let COMPARE_URL = "http://localhost:1999/compare/{operation}/{dataset1}/{dataset2}";
+        let EXPORT_URL = "http://localhost:1999/compare/{operation}/{dataset1}/{dataset2}?format=n3";
         let NAMESPACES_URL = "http://localhost:1997/stats/namespaces";
+
 
         vm.operations = ["union", "intersection", "difference", "isomorphism"];
 
@@ -44,6 +46,13 @@
             }, function error(response) {
                 alert("Couldn't get triples.");
             })
+        }
+
+        vm.exportOperation = function() {
+            let url = EXPORT_URL.replace("{operation}", operation)
+                                .replace("{dataset1}", dataset1.name)
+                                .replace("{dataset2}", dataset2.name);
+            window.location.assign(url);
         }
 
         function compare(operation, dataset1, dataset2) {
