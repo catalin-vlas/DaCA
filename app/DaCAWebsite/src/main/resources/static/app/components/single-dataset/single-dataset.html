@@ -12,6 +12,29 @@
         <md-content layout="column" layout-padding style="min-width:100%">
             <textarea ng-model="vm.query"></textarea>
             <md-button ng-click="vm.submitQuery()">Submit Query</md-button>
+            <md-card md-whiteframe="6">
+                <md-virtual-repeat-container ng-show="vm.triples" layout-fill>
+                    <md-table-container layout-fill>
+                        <table md-table layout-fill>
+                            <thead md-head>
+                                <tr md-row>
+                                    <th md-column flex="30">Subject</th>
+                                    <th md-column flex="30">Predicate</th>
+                                    <th md-column flex="30">Object</th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row md-virtual-repeat="triple in vm.triples">
+                                    <td md-cell flex="30">{{triple.subject}}</td>
+                                    <td md-cell flex="30">{{triple.predicate}}</td>
+                                    <td md-cell flex="30">{{triple.object}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+                </md-virtual-repeat-container>
+            </md-card>
+
         </md-content>
     </md-sidenav>
 

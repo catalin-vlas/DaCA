@@ -15,14 +15,14 @@
 
         vm.$onInit = function() {
             getTriples().then(function success(response) {
-                let triples = response.data;
+                vm.triples = response.data;
                 let svg = d3.select("#svg-body").append("svg")
                     .attr("width", 800)
                     .attr("height", 600);
 
                 let force = d3.layout.force().size([800, 600]);
 
-                let graph = triplesToGraph(triples, svg);
+                let graph = triplesToGraph(vm.triples, svg);
 
                 update(graph, force, svg);
             }, function error(response) {

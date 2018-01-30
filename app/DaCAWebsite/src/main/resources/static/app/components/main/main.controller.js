@@ -28,7 +28,7 @@
         };
 
         vm.$onInit = function() {
-            vm.activePage = vm.pages.UPLOAD;
+            vm.activePage = vm.pages.DATASETS.DASHBOARD;
         };
 
         vm.changePage = function(page) {

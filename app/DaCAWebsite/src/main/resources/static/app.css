@@ -4,9 +4,8 @@
     width: 100%;
 }
 
-.activeGraph {
-    background-color: #E1F5FE;
-    font-weight: 600;
+#graphs md-virtual-repeat-container {
+  height: 200px;
 }
 
 /*
