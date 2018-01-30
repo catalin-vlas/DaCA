@@ -7,13 +7,14 @@ import com.wade.daca.sparql.client.model.RdfTriple;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by catavlas on 1/27/2018.
@@ -50,10 +51,18 @@ public class CompareServiceImpl implements CompareService{
                     os.write(line.getBytes());
                 }
             } catch(Exception e) {
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                try {
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         } else {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Bad format.");
+            try {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Bad format.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -79,10 +88,18 @@ public class CompareServiceImpl implements CompareService{
                     os.write(line.getBytes());
                 }
             } catch(Exception e) {
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                try {
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         } else {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Bad format.");
+            try {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Bad format.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -108,10 +125,18 @@ public class CompareServiceImpl implements CompareService{
                     os.write(line.getBytes());
                 }
             } catch(Exception e) {
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                try {
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         } else {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Bad format.");
+            try {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Bad format.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -166,7 +191,9 @@ public class CompareServiceImpl implements CompareService{
     private ArrayList<RdfTriple> getNamespaceIntersection(String namespaceId1, String namespaceId2) throws ApiException {
         ArrayList<RdfTriple> result = new ArrayList<>();
         ArrayList<RdfTriple> graph1 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId1);
+        System.out.println("CompareServiceImpl.getNamespaceIntersection: graph1" + graph1.size());
         ArrayList<RdfTriple> graph2 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId2);
+        System.out.println("CompareServiceImpl.getNamespaceIntersection: graph2" + graph2.size());
 
         HashMap<String, Integer> hitMap = new HashMap<>();
 

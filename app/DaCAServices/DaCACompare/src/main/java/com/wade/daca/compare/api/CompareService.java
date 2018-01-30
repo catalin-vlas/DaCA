@@ -2,11 +2,9 @@ package com.wade.daca.compare.api;
 
 import com.wade.daca.sparql.client.ApiException;
 import com.wade.daca.sparql.client.model.RdfTriple;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 /**

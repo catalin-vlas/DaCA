@@ -49,9 +49,9 @@
         }
 
         vm.exportOperation = function() {
-            let url = EXPORT_URL.replace("{operation}", operation)
-                                .replace("{dataset1}", dataset1.name)
-                                .replace("{dataset2}", dataset2.name);
+            let url = EXPORT_URL.replace("{operation}", vm.operation)
+                                .replace("{dataset1}", vm.firstDataset.name)
+                                .replace("{dataset2}", vm.secondDataset.name);
             window.location.assign(url);
         }
 
