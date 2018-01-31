@@ -1,0 +1,203 @@
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct:      <http://purl.org/dc/terms/> .
+@prefix foaf:     <http://xmlns.com/foaf/0.1/> .
+@prefix org:      <http://www.w3.org/ns/org#> .
+
+@prefix qb:       <http://purl.org/linked-data/cube#> .
+@prefix dbp:      <http://dbpedia.org/page/> .
+
+@prefix sdmx-concept:    <http://purl.org/linked-data/sdmx/2009/concept#> .
+@prefix sdmx-dimension:  <http://purl.org/linked-data/sdmx/2009/dimension#> .
+@prefix sdmx-attribute:  <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix sdmx-measure:    <http://purl.org/linked-data/sdmx/2009/measure#> .
+@prefix sdmx-metadata:   <http://purl.org/linked-data/sdmx/2009/metadata#> .
+@prefix sdmx-code:       <http://purl.org/linked-data/sdmx/2009/code#> .
+@prefix sdmx-subject:    <http://purl.org/linked-data/sdmx/2009/subject#> .
+
+@prefix eg:       <http://example.org/ns#> .
+
+# -- Data Set --------------------------------------------
+
+eg:dataset-{namespaceId} a qb:DataSet;
+    dct:title       "RDF namespace statistics"@en;
+    rdfs:label      "DaCA RDF Stats"@en;
+    rdfs:comment    "Statistics regarding RDF datasets stored in DaCA web tool"@en;
+    dct:description "Statistics regarding RDF datasets stored in DaCA web tool"@en;
+    dct:publisher   eg:organization ;
+    dct:issued      "2018-01-29"^^xsd:date;
+    qb:structure    eg:dsd-DaCA ;
+    sdmx-attribute:unitMeasure dbp:Integer;
+    .
+
+eg:organization a org:Organization, foaf:Agent;
+    rdfs:label "DaCA team"@en .
+
+# -- Data structure definition ----------------------------
+
+eg:dsd-DaCA a qb:DataStructureDefinition;
+    qb:component
+    # The dimensions
+	    [ qb:dimension eg:refNamespaceId ],
+		[ qb:dimension eg:refPropertyId ];
+
+    # The measure(s)
+    qb:component [ qb:measure eg:NumericalValue ];
+
+    # The attributes
+    qb:component [ qb:attribute sdmx-attribute:unitMeasure;
+                   qb:componentRequired "true"^^xsd:boolean;
+                   qb:componentAttachment qb:DataSet; ];
+    .
+
+# -- Dimensions and measures  ----------------------------
+
+eg:refNamespaceId a rdf:Property, qb:DimensionProperty;
+    rdfs:label "namespace identifier"@en;
+    rdfs:subPropertyOf dbp:Identifier;
+    rdfs:range dbp:String_literal;
+    qb:concept sdmx-concept:dsi;
+    .
+
+eg:refPropertyId a rdf:Property, qb:DimensionProperty;
+    rdfs:label "property identifier"@en;
+    rdfs:subPropertyOf dbp:Identifier;
+    rdfs:range eg:PropertyType;
+    qb:concept sdmx-concept:dsi;
+    .
+
+eg:PropertyType a rdfs:Class ;
+	rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+	rdfs:label "Set of properties" ;
+	rdfs:comment "The class of available statistics." ;
+    rdfs:range dbp:Integer;
+	rdfs:subClassOf rdfs:Resource ;
+	.
+
+eg:refSize a eg:PropertyType;
+    rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+    rdfs:label "dataset size"@en;
+    .
+
+eg:refNrTriples a eg:PropertyType;
+    rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+    rdfs:label "number of triples"@en;
+    .
+
+eg:refNrNodes a eg:PropertyType;
+    rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+    rdfs:label "number of nodes"@en;
+    .
+
+eg:refNrURINodes a eg:PropertyType;
+    rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+    rdfs:label "number of nodes with URI labels"@en;
+    .
+
+eg:refNrLiteralNodes a eg:PropertyType;
+    rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+    rdfs:label "number of nodes with literal lables"@en;
+    .
+
+eg:refNrBlankNodes a eg:PropertyType;
+    rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+    rdfs:label "number of blank nodes"@en;
+    .
+
+eg:refNrTypeTriples a eg:PropertyType;
+    rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+    rdfs:label "number type predicates"@en;
+    .
+
+eg:refMaxOutDegree a eg:PropertyType;
+    rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+    rdfs:label "max number of edges leaving a node"@en;
+    .
+
+eg:refMaxInDegree a eg:PropertyType;
+    rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+    rdfs:label "max number of edges entering a node"@en;
+    .
+
+eg:refMaxDegree a eg:PropertyType;
+    rdfs:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ;
+    rdfs:label "max degre of a node"@en;
+    .
+
+eg:NumericalValue a rdf:Property, qb:MeasureProperty;
+    rdfs:label "some numerical value"@en;
+    rdfs:subPropertyOf sdmx-measure:obsValue;
+    rdfs:range dbp:Integer ;
+	.
+
+# -- Observations -----------------------------------------
+
+eg:o1 a qb:Observation;
+    qb:dataSet  eg:dataset-{namespaceId} ;
+    eg:refNamespaceID          "{namespaceId}" ;
+    eg:refPropertyId           eg:refSize ;
+    eg:NumericalValue          {Size} ;
+    .
+
+eg:o2 a qb:Observation;
+    qb:dataSet  eg:dataset-{namespaceId} ;
+    eg:refNamespaceID          "{namespaceId}" ;
+    eg:refPropertyId           eg:refNrTriples ;
+    eg:NumericalValue          {NrTriples} ;
+    .
+
+eg:o3 a qb:Observation;
+    qb:dataSet  eg:dataset-{namespaceId} ;
+    eg:refNamespaceID          "{namespaceId}" ;
+    eg:refPropertyId           eg:refNrNodes ;
+    eg:NumericalValue          {NrNodes} ;
+    .
+
+eg:o4 a qb:Observation;
+    qb:dataSet  eg:dataset-{namespaceId} ;
+    eg:refNamespaceID          "{namespaceId}" ;
+    eg:refPropertyId           eg:refNrBlankNodes ;
+    eg:NumericalValue          {NrBlankNodes} ;
+    .
+
+eg:o5 a qb:Observation;
+    qb:dataSet  eg:dataset-{namespaceId} ;
+    eg:refNamespaceID          "{namespaceId}" ;
+    eg:refPropertyId           eg:refNrURINodes ;
+    eg:NumericalValue          {NrURINodes} ;
+    .
+
+eg:o6 a qb:Observation;
+    qb:dataSet  eg:dataset-{namespaceId} ;
+    eg:refNamespaceID          "{namespaceId}" ;
+    eg:refPropertyId           eg:refNrLiteralNodes ;
+    eg:NumericalValue          {NrLiteralNodes} ;
+    .
+
+eg:o7 a qb:Observation;
+    qb:dataSet  eg:dataset-{namespaceId} ;
+    eg:refNamespaceID          "{namespaceId}" ;
+    eg:refPropertyId           eg:refNrTypeTriples ;
+    eg:NumericalValue          {NrTypeTriples} ;
+    .
+
+eg:o8 a qb:Observation;
+    qb:dataSet  eg:dataset-{namespaceId} ;
+    eg:refNamespaceID          "{namespaceId}" ;
+    eg:refPropertyId           eg:refMaxInDegree ;
+    eg:NumericalValue          {MaxInDegree} ;
+    .
+
+eg:o9 a qb:Observation;
+    qb:dataSet  eg:dataset-{namespaceId} ;
+    eg:refNamespaceID          "{namespaceId}" ;
+    eg:refPropertyId           eg:refMaxOutDegree ;
+    eg:NumericalValue          {MaxOutDegree} ;
+    .
+
+eg:o10 a qb:Observation;
+    qb:dataSet  eg:dataset-{namespaceId} ;
+    eg:refNamespaceID          "{namespaceId}" ;
+    eg:refPropertyId           eg:refMaxDegree ;
+    eg:NumericalValue          {MaxDegree} ;
+    .

@@ -3,7 +3,11 @@ package com.wade.daca.sparql.helper;
 import com.bigdata.rdf.sail.webapp.SD;
 import com.bigdata.rdf.sail.webapp.client.RemoteRepository;
 import com.bigdata.rdf.sail.webapp.client.RemoteRepositoryManager;
+import com.sun.org.apache.xerces.internal.util.URI;
+import com.wade.daca.sparql.dataobjects.RdfStats;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.apache.log4j.lf5.util.ResourceUtils;
 import org.openrdf.model.Statement;
 import org.openrdf.query.BindingSet;
 import org.openrdf.query.GraphQueryResult;
@@ -15,9 +19,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.lang.reflect.Array;
+import java.net.URL;
+import java.util.*;
 
 //this need to be wrapped with a restful web service
 //here is a spring example
@@ -153,6 +157,131 @@ public class RdfStorageHelper {
         return resultList;
     }
 
+    public void computeStats(String namespaceId) throws Exception {
+        ArrayList<BindingSet> triples = listNamespaceTriples(namespaceId);
+
+        RdfStats stats = new RdfStats();
+
+        HashMap<String, Integer> inDegree = new HashMap<>();
+        HashMap<String, Integer> outDegree = new HashMap<>();
+        HashMap<String, Boolean> viz = new HashMap<>();
+
+        for (int i=0; i<triples.size(); ++i){
+
+            String s = triples.get(i).getBinding("s").getValue().stringValue();
+            String p = triples.get(i).getBinding("p").getValue().stringValue();
+            String o = triples.get(i).getBinding("o").getValue().stringValue();
+
+            stats.setNrTriples(stats.getNrTriples()+1);
+            if (p.endsWith("type")) stats.setNrType(stats.getNrType()+1);
+            stats.setSize(stats.getSize()+s.length()+p.length()+o.length()+3);
+
+            Integer idg = inDegree.get(o);
+            int add=0;
+            if (idg==null) {
+                if (viz.get(o)==null) {
+                    stats.setNrNodes(stats.getNrNodes()+1);
+                    viz.put(o,true);
+                    add=1;
+                }
+                else add=0;
+
+                inDegree.put(o,new Integer(1));
+
+                try {
+                    new URL(o);
+                    stats.setNrURINodes(stats.getNrURINodes()+add);
+                } catch (Exception e) {
+
+                    if (!triples.get(i).getBinding("o").getValue().toString().startsWith("_:"))
+                         stats.setNrLiterals(stats.getNrLiterals()+add);
+                    else stats.setNrBlankNodes(stats.getNrBlankNodes()+add);
+                }
+            }
+            else inDegree.put(o,new Integer(idg+1));
+
+            Integer odg = outDegree.get(s);
+            add=0;
+            if (odg==null) {
+                if (viz.get(s)==null) {
+                    stats.setNrNodes(stats.getNrNodes()+1);
+                    viz.put(s,true);
+                    ++add;
+                }
+                else add=0;
+
+                outDegree.put(s,new Integer(1));
+
+                try {
+                    new URL(s);
+                    stats.setNrURINodes(stats.getNrURINodes()+add);
+                } catch (Exception e) {
+                    if (!triples.get(i).getBinding("s").getValue().toString().startsWith("_:"))
+                         stats.setNrLiterals(stats.getNrLiterals()+add);
+                    else stats.setNrBlankNodes(stats.getNrBlankNodes()+add);
+                }
+            }
+            else outDegree.put(s,odg+1);
+        }
+
+        Iterator it = inDegree.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            String node = (String) pair.getKey();
+            Integer inDg = (Integer) pair.getValue();
+
+            if (inDg > stats.getMaxInDegree()) {
+                stats.setMaxInDegree(inDg);
+                stats.setMaxInDegreeNode(node);
+            }
+
+            Integer totDegree = inDg + (outDegree.get(node)!=null?outDegree.get(node):0);
+
+            if (totDegree > stats.getMaxDegree()) {
+                stats.setMaxDegree(totDegree);
+                stats.setMaxDegreeNode(node);
+            }
+        }
+
+        it = outDegree.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            String node = (String) pair.getKey();
+            Integer outDg = (Integer) pair.getValue();
+
+            if (outDg > stats.getMaxOutDegree()) {
+                stats.setMaxOutDegree(outDg);
+                stats.setMaxOutDegreeNode(node);
+            }
+
+            Integer totDegree = outDg + (inDegree.get(node)!=null?inDegree.get(node):0);
+
+            if (totDegree > stats.getMaxDegree()) {
+                stats.setMaxDegree(totDegree);
+                stats.setMaxDegreeNode(node);
+            }
+        }
+
+        //save stats
+        stats.setNamespaceID(namespaceId);
+        String updateStatement = RDFDataCubeConverter.statsToDataCube(stats);
+
+        createNamespace(namespaceId+"_stats", null);
+        insertTriples(namespaceId+"_stats", IOUtils.toInputStream(updateStatement),RDFFormat.TURTLE);
+    }
+
+    public RdfStats getStats(String namespaceId) throws Exception {
+        String queryStr = "select * \n" +
+                "WHERE {\n" +
+                "  ?s <http://example.org/ns#NumericalValue> ?o\n" +
+                "} ";
+
+        ArrayList<BindingSet> triples = executeCustomQuery(namespaceId+"_stats",queryStr);
+
+        return RDFDataCubeConverter.triplesToStats(triples);
+    }
+
     public void clearNamespace(String namespace) throws Exception {
         RemoteRepositoryManager rpm = RdfStorageHelper.getRemoteRepositoryManager();
 
@@ -182,7 +311,11 @@ public class RdfStorageHelper {
 
         RdfStorageHelper helper = new RdfStorageHelper();
 
-        helper.createNamespace("test",null);
+        helper.computeStats("test1");
+
+        System.out.println(helper.getStats("test1"));
+
+        //helper.createNamespace("test1",null);
 
         //helper.deleteNamespace("test");
 
@@ -200,9 +333,9 @@ public class RdfStorageHelper {
 
 
         //Insert using input stream in n3 or nquads formats
-        File f = new File("C:\\Users\\ghitz\\Documents\\GitHub\\DaCA\\app\\DaCAServices\\DaCASparqlProcessor\\tioman.n3");
+        //File f = new File("C:\\Users\\catavlas\\web-project\\DaCA\\app\\DaCAServices\\DaCASparqlProcessor\\tioman.n3");
 
-        helper.insertTriples("test", new FileInputStream(f),RDFFormat.NQUADS);
+        //helper.insertTriples("test1", new FileInputStream(f),RDFFormat.NQUADS);
 
         /*
         //list triples from namespace
@@ -226,5 +359,6 @@ public class RdfStorageHelper {
             log.info(lista.get(i));
         }*/
     }
+
 
 }

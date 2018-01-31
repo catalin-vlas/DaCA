@@ -1,5 +1,6 @@
 package com.wade.daca.sparql.api;
 
+import com.wade.daca.sparql.dataobjects.RdfStats;
 import com.wade.daca.sparql.dataobjects.RdfTriple;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,9 @@ public interface SparqlService {
 
     @RequestMapping(value = "/triples/{namespaceId}", method = RequestMethod.GET)
     List<RdfTriple> getTriples(@PathVariable("namespaceId") String namespaceId);
+
+    @RequestMapping(value = "/triples/stats/{namespaceId}", method = RequestMethod.GET)
+    RdfStats getTriplesStats(@PathVariable("namespaceId") String namespaceId) throws Exception;
 
     @RequestMapping(value = "/triples/{namespaceId}", method = RequestMethod.POST)
     String addTriples(@PathVariable("namespaceId") String namespaceId,

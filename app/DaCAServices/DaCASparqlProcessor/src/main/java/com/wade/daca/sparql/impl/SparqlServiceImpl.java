@@ -1,6 +1,7 @@
 package com.wade.daca.sparql.impl;
 
 import com.wade.daca.sparql.api.SparqlService;
+import com.wade.daca.sparql.dataobjects.RdfStats;
 import com.wade.daca.sparql.dataobjects.RdfTriple;
 import com.wade.daca.sparql.helper.RdfStorageHelper;
 import org.openrdf.model.Literal;
@@ -92,6 +93,12 @@ public class SparqlServiceImpl implements SparqlService {
     }
 
     @Override
+    @RequestMapping(value = "/triples/stats/{namespaceId}", method = RequestMethod.GET)
+    public RdfStats getTriplesStats(@PathVariable("namespaceId") String namespaceId) throws Exception {
+        return rdfStorageHelper.getStats(namespaceId);
+    }
+
+    @Override
     @RequestMapping(value = "/triples/{namespaceId}", method = RequestMethod.POST)
     public String addTriples(@PathVariable("namespaceId") String namespaceId,
                              @RequestBody ArrayList<RdfTriple> triples) {
@@ -127,6 +134,7 @@ public class SparqlServiceImpl implements SparqlService {
         try {
             // TODO: If the format of the file isn't NQUADS, return an error!
             rdfStorageHelper.insertTriples(namespaceId, file.getInputStream(), RDFFormat.NQUADS);
+            rdfStorageHelper.computeStats(namespaceId);
         } catch (Exception e) {
             e.printStackTrace();
             result = "Failure";
