@@ -3,23 +3,17 @@ package com.wade.daca.sparql.helper;
 import com.bigdata.rdf.sail.webapp.SD;
 import com.bigdata.rdf.sail.webapp.client.RemoteRepository;
 import com.bigdata.rdf.sail.webapp.client.RemoteRepositoryManager;
-import com.sun.org.apache.xerces.internal.util.URI;
 import com.wade.daca.sparql.dataobjects.RdfStats;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
-import org.apache.log4j.lf5.util.ResourceUtils;
 import org.openrdf.model.Statement;
 import org.openrdf.query.BindingSet;
 import org.openrdf.query.GraphQueryResult;
 import org.openrdf.query.TupleQueryResult;
 import org.openrdf.rio.RDFFormat;
-import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 
@@ -78,7 +72,9 @@ public class RdfStorageHelper {
             if (stmt.getPredicate()
                     .toString()
                     .equals(SD.KB_NAMESPACE.stringValue())) {
-                namespaces.add(stmt.getObject().stringValue());
+                if (!stmt.getObject().stringValue().contains("_stats")) {
+                    namespaces.add(stmt.getObject().stringValue());
+                }
             }
         }
 
@@ -279,7 +275,9 @@ public class RdfStorageHelper {
 
         ArrayList<BindingSet> triples = executeCustomQuery(namespaceId+"_stats",queryStr);
 
-        return RDFDataCubeConverter.triplesToStats(triples);
+        RdfStats rdfStats = RDFDataCubeConverter.triplesToStats(triples);
+        rdfStats.setNamespaceID(namespaceId);
+        return rdfStats;
     }
 
     public void clearNamespace(String namespace) throws Exception {

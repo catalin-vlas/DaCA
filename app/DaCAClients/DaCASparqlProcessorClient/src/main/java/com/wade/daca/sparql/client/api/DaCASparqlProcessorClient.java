@@ -1,6 +1,7 @@
 package com.wade.daca.sparql.client.api;
 
 import com.wade.daca.sparql.client.ApiException;
+import com.wade.daca.sparql.client.model.RdfStats;
 import com.wade.daca.sparql.client.model.RdfTriple;
 
 import java.io.File;
@@ -49,6 +50,17 @@ public class DaCASparqlProcessorClient {
     }
 
     /**
+     * Get namespace stats
+     *
+     * @param namespaceId The namespace for which stats are requested (required)
+     * @return RdfStats
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public RdfStats getNamespaceStats(String namespaceId) throws ApiException {
+        return namespaceApi.getNamespaceStats(namespaceId);
+    }
+
+    /**
      * Execute custom SPARQL query
      *
      * @param namespaceId The namespace in which the query is run (required)
@@ -89,8 +101,8 @@ public class DaCASparqlProcessorClient {
      * @param file File containing triples (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void addTriplesFromFile(String namespaceId, File file) throws ApiException {
-        triplesApi.addTriplesFromFile(namespaceId, file);
+    public void addTriplesFromFile(String namespaceId, String format, File file) throws ApiException {
+        triplesApi.addTriplesFromFile(namespaceId, format, file);
     }
 
     /**

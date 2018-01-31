@@ -13,6 +13,9 @@ public interface SparqlService {
     @RequestMapping(value = "/namespace", method = RequestMethod.GET)
     List<String> getNamespaces();
 
+    @RequestMapping(value = "/namespace/stats/{namespaceId}", method = RequestMethod.GET)
+    RdfStats getNamespaceStats(@PathVariable("namespaceId") String namespaceId) throws Exception;
+
     @RequestMapping(value = "/namespace/{namespaceId}", method = RequestMethod.POST)
     String createNamespace(@PathVariable("namespaceId") String namespaceId);
 
@@ -22,15 +25,13 @@ public interface SparqlService {
     @RequestMapping(value = "/triples/{namespaceId}", method = RequestMethod.GET)
     List<RdfTriple> getTriples(@PathVariable("namespaceId") String namespaceId);
 
-    @RequestMapping(value = "/triples/stats/{namespaceId}", method = RequestMethod.GET)
-    RdfStats getTriplesStats(@PathVariable("namespaceId") String namespaceId) throws Exception;
-
     @RequestMapping(value = "/triples/{namespaceId}", method = RequestMethod.POST)
     String addTriples(@PathVariable("namespaceId") String namespaceId,
                       @RequestBody ArrayList<RdfTriple> triples);
 
     @RequestMapping(value = "/triples/{namespaceId}", method = RequestMethod.PUT)
     String addTriplesFromFile(@PathVariable("namespaceId") String namespaceId,
+                              @RequestParam("format") String format,
                               @RequestParam("file") MultipartFile file);
 
     @RequestMapping(value = "/sparql/query", method = RequestMethod.GET)

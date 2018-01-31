@@ -32,7 +32,7 @@ tags:
 schemes:
   - http
 paths:
-  /namespace/:
+  '/namespace/':
     get:
       tags:
         - Namespace
@@ -50,6 +50,30 @@ paths:
             type: array
             items:
               type: string
+        '405':
+          description: Invalid input
+  '/namespace/stats/{namespaceId}':
+    get:
+      tags:
+        - Namespace
+      summary: Get namespace stats
+      description: ''
+      operationId: getNamespaceStats
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: namespaceId
+          in: path
+          description: The namespace for which stats are requested
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/RdfStats'
         '405':
           description: Invalid input
   '/namespace/{namespaceId}':
@@ -171,6 +195,11 @@ paths:
           description: File containing triples
           required: false
           type: file
+        - name: format
+          in: formData
+          description: The format of the data inside the file
+          type: string
+          required: true
       responses:
         '200':
           description: Success
@@ -242,6 +271,37 @@ definitions:
       predicate:
         type: string
       object:
+        type: string
+  RdfStats:
+    type: object
+    properties:
+      Size:
+        type: integer
+      NrTriples:
+        type: integer
+      NrNodes:
+        type: integer
+      NrBlankNodes:
+        type: integer
+      NrLiterals:
+        type: integer
+      NrURINodes:
+        type: integer
+      NrType:
+        type: integer
+      MaxInDegree:
+        type: integer
+      MaxOutDegree:
+        type: integer
+      MaxDegree:
+        type: integer
+      MaxInDegreeNode:
+        type: string
+      MaxOutDegreeNode:
+        type: string
+      MaxDegreeNode:
+        type: string
+      NamespaceID:
         type: string
 externalDocs:
   description: Find out more about DaCA

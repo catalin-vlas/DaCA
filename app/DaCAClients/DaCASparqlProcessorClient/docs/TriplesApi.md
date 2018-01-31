@@ -57,7 +57,7 @@ No authorization required
 
 <a name="addTriplesFromFile"></a>
 # **addTriplesFromFile**
-> addTriplesFromFile(namespaceId, file)
+> addTriplesFromFile(namespaceId, format, file)
 
 Add triples from file in given namespace
 
@@ -72,9 +72,10 @@ Add triples from file in given namespace
 
 TriplesApi apiInstance = new TriplesApi();
 String namespaceId = "namespaceId_example"; // String | The namespace in which triples are added
+String format = "format_example"; // String | The format of the data inside the file
 File file = new File("/path/to/file.txt"); // File | File containing triples
 try {
-    apiInstance.addTriplesFromFile(namespaceId, file);
+    apiInstance.addTriplesFromFile(namespaceId, format, file);
 } catch (ApiException e) {
     System.err.println("Exception when calling TriplesApi#addTriplesFromFile");
     e.printStackTrace();
@@ -86,6 +87,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespaceId** | **String**| The namespace in which triples are added |
+ **format** | **String**| The format of the data inside the file |
  **file** | **File**| File containing triples | [optional]
 
 ### Return type

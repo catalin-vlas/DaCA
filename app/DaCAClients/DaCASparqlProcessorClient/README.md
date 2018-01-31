@@ -26,9 +26,10 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-      <groupId>com.wade.daca.sparql</groupId>
-      <artifactId>DaCASparqlProcessorClient</artifactId>
-      <name>DaCASparqlProcessorClient</name>
+    <groupId>com.wade.daca.sparql</groupId>
+    <artifactId>DaCASparqlProcessorClient</artifactId>
+    <name>DaCASparqlProcessorClient</name>
+    <version>1.0.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +50,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/DaCASparqlProcessorClient-1.0.0.jar
+* target/swagger-java-client-1.0.0.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -58,9 +59,10 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import com.wade.daca.sparql.client.auth.*;
-import com.wade.daca.sparql.client.model.*;
-import com.wade.daca.sparql.client.api.NamespaceApi;
+import com.wade.daca.sparql.*;
+import com.wade.daca.sparql.auth.*;
+import com.wade.daca.sparql.model.*;
+import com.wade.daca.sparql.api.NamespaceApi;
 
 import java.io.File;
 import java.util.*;
@@ -90,6 +92,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *NamespaceApi* | [**createNamespace**](docs/NamespaceApi.md#createNamespace) | **POST** /namespace/{namespaceId} | Create a new namespace
 *NamespaceApi* | [**deleteNamespace**](docs/NamespaceApi.md#deleteNamespace) | **DELETE** /namespace/{namespaceId} | Delete a namespace
+*NamespaceApi* | [**getNamespaceStats**](docs/NamespaceApi.md#getNamespaceStats) | **GET** /namespace/stats/{namespaceId} | Get namespace stats
 *NamespaceApi* | [**getNamespaces**](docs/NamespaceApi.md#getNamespaces) | **GET** /namespace/ | Get namespaces
 *SparqlApi* | [**executeSparqlQuery**](docs/SparqlApi.md#executeSparqlQuery) | **GET** /sparql/query | Execute custom SPARQL query
 *SparqlApi* | [**executeSparqlUpdate**](docs/SparqlApi.md#executeSparqlUpdate) | **POST** /sparql/query | Execute custom update SPARQL query
@@ -100,6 +103,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [RdfStats](docs/RdfStats.md)
  - [RdfTriple](docs/RdfTriple.md)
 
 
@@ -114,7 +118,5 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 
 ## Author
 
-aurelian.hreapca@info.uaic.ro
-catalin.vlas@info.uaic.ro
-virgil.barcan@info.uaic.ro
+aurelian.hreapca@info.uaic.ro catalin.vlas@info.uaic.ro virgil.barcan@info.uaic.ro
 

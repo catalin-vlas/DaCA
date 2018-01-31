@@ -42,6 +42,12 @@ public class SparqlServiceImpl implements SparqlService {
     }
 
     @Override
+    @RequestMapping(value = "/namespace/stats/{namespaceId}", method = RequestMethod.GET)
+    public RdfStats getNamespaceStats(@PathVariable("namespaceId") String namespaceId) throws Exception {
+        return rdfStorageHelper.getStats(namespaceId);
+    }
+
+    @Override
     @RequestMapping(value = "/namespace/{namespaceId}", method = RequestMethod.POST)
     public String createNamespace(@PathVariable("namespaceId") String namespaceId) {
         String result = "";
@@ -93,12 +99,6 @@ public class SparqlServiceImpl implements SparqlService {
     }
 
     @Override
-    @RequestMapping(value = "/triples/stats/{namespaceId}", method = RequestMethod.GET)
-    public RdfStats getTriplesStats(@PathVariable("namespaceId") String namespaceId) throws Exception {
-        return rdfStorageHelper.getStats(namespaceId);
-    }
-
-    @Override
     @RequestMapping(value = "/triples/{namespaceId}", method = RequestMethod.POST)
     public String addTriples(@PathVariable("namespaceId") String namespaceId,
                              @RequestBody ArrayList<RdfTriple> triples) {
@@ -117,6 +117,7 @@ public class SparqlServiceImpl implements SparqlService {
             }
 
             rdfStorageHelper.insertTriples(namespaceId, statements);
+            rdfStorageHelper.computeStats(namespaceId);
         } catch (Exception e) {
             e.printStackTrace();
             result = "Failure";
@@ -128,12 +129,18 @@ public class SparqlServiceImpl implements SparqlService {
     @Override
     @RequestMapping(value = "/triples/{namespaceId}", method = RequestMethod.PUT)
     public String addTriplesFromFile(@PathVariable("namespaceId") String namespaceId,
+                                     @RequestParam("format") String format,
                                      @RequestParam("file") MultipartFile file) {
         String result = "Success";
 
         try {
-            // TODO: If the format of the file isn't NQUADS, return an error!
-            rdfStorageHelper.insertTriples(namespaceId, file.getInputStream(), RDFFormat.NQUADS);
+            RDFFormat rdfFormat = RDFFormat.valueOf(format);
+
+            if(rdfFormat == null) {
+                throw new Exception("Unrecognized format: " + format + ".");
+            }
+
+            rdfStorageHelper.insertTriples(namespaceId, file.getInputStream(), rdfFormat);
             rdfStorageHelper.computeStats(namespaceId);
         } catch (Exception e) {
             e.printStackTrace();

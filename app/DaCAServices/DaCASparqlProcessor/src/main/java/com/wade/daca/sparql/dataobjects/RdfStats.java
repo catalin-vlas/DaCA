@@ -8,12 +8,15 @@ public class RdfStats {
     private int Size; //file size in Bytes
     private int NrTriples;
     private int NrNodes;
+
     private int NrBlankNodes;
     private int NrLiterals;
     private int NrURINodes;
+
     private int NrType;
     private int MaxInDegree;
     private int MaxOutDegree;
+
     private int MaxDegree;
     private String MaxInDegreeNode;
     private String MaxOutDegreeNode;
