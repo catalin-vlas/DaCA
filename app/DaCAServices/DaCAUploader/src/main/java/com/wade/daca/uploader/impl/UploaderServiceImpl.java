@@ -15,6 +15,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class UploaderServiceImpl implements UploaderService {
 
@@ -28,8 +29,9 @@ public class UploaderServiceImpl implements UploaderService {
     @Override
     @RequestMapping(value = "/upload/{namespaceId}", method = RequestMethod.POST)
     public String addTriplesFromUrl(@PathVariable("namespaceId") String namespaceId,
+                                    @RequestParam("format") String format,
                                     @RequestParam("url") String url) {
-        String result = "Success";
+        String result = "\"Success\"";
 
         try {
             URL u = new URL(url);
@@ -46,21 +48,21 @@ public class UploaderServiceImpl implements UploaderService {
             sparqlProcessorClient.createNamespace(namespaceId);
 
             // add the triples to the new namespace
-            sparqlProcessorClient.addTriplesFromFile(namespaceId, convertedFile);
+            sparqlProcessorClient.addTriplesFromFile(namespaceId, format, convertedFile);
 
             convertedFile.delete();
         } catch (IOException | ApiException e) {
             e.printStackTrace();
-            result = "Failure";
+            result = "\"Failure\"";
         }
 
         return result;
     }
 
     @Override
-    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(value = "/upload/{namespaceId}", method = RequestMethod.PUT)
     public String addTriplesFromFile(@PathVariable("namespaceId") String namespaceId,
+                                     @RequestParam("format") String format,
                                      @RequestParam("file")  MultipartFile file) {
         String result = "\"Success\"";
 
@@ -74,7 +76,7 @@ public class UploaderServiceImpl implements UploaderService {
             sparqlProcessorClient.createNamespace(namespaceId);
 
             // add the triples to the new namespace
-            sparqlProcessorClient.addTriplesFromFile(namespaceId, convertedFile);
+            sparqlProcessorClient.addTriplesFromFile(namespaceId, format, convertedFile);
         } catch (IOException | ApiException e) {
             e.printStackTrace();
             result = "\"Failure\"";

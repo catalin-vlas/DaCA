@@ -72,7 +72,8 @@ public class RdfStorageHelper {
             if (stmt.getPredicate()
                     .toString()
                     .equals(SD.KB_NAMESPACE.stringValue())) {
-                if (!stmt.getObject().stringValue().contains("_stats")) {
+                if (!stmt.getObject().stringValue().contains("_stats") ||
+                        !stmt.getObject().stringValue().contains("kb")) {
                     namespaces.add(stmt.getObject().stringValue());
                 }
             }

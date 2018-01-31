@@ -19,6 +19,7 @@ import java.util.List;
 /**
  * Created by catavlas on 1/27/2018.
  */
+@SuppressWarnings("ALL")
 @RestController
 public class CompareServiceImpl implements CompareService{
 
@@ -191,9 +192,7 @@ public class CompareServiceImpl implements CompareService{
     private ArrayList<RdfTriple> getNamespaceIntersection(String namespaceId1, String namespaceId2) throws ApiException {
         ArrayList<RdfTriple> result = new ArrayList<>();
         ArrayList<RdfTriple> graph1 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId1);
-        System.out.println("CompareServiceImpl.getNamespaceIntersection: graph1" + graph1.size());
         ArrayList<RdfTriple> graph2 = (ArrayList<RdfTriple>) sparqlProcessorClient.getTriples(namespaceId2);
-        System.out.println("CompareServiceImpl.getNamespaceIntersection: graph2" + graph2.size());
 
         HashMap<String, Integer> hitMap = new HashMap<>();
 

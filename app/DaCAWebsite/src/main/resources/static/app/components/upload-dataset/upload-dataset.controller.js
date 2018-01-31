@@ -13,10 +13,12 @@
         let UPLOAD_DATASET_URL = "http://localhost:1995/upload/{datasetName}";
 
         vm.datasetsInProgress = [];
+        vm.formats = ["RDF/XML", "RDF/JSON", "RDFa", "JSON-LD", "N-Triples", "Turtle", "N3", "N-Quads"];
 
         vm.clearDataset = function() {
             vm.datasetName = "";
             vm.fileUrl = "";
+            vm.datasetFormat = "";
         };
 
         vm.addDataset = function() {
@@ -29,23 +31,31 @@
                 return;
             }
             if(vm.fileUrl) {
-                uploadDatasetUrl(vm.datasetName, vm.fileUrl).then(function success(response) {
+                vm.datasetsInProgress.push({
+                    'name': vm.datasetName,
+                    'url': vm.fileUrl
+                });
+                uploadDatasetUrl(vm.datasetName, vm.datasetFormat, vm.fileUrl).then(function success(response) {
+                    vm.datasetsInProgress.pop();
                     vm.datasetsInProgress.push({
                         'name': vm.datasetName,
                         'url': vm.fileUrl,
-                        'progress': Math.random() * 100.0
+                        'loadingStatus': response.data
                     });
+                    console.log("uploadDatasetUrl", response.data);
                     vm.clearDataset();
                 }, function error(response) {
                     alert("Error!\n" + response);
                 });
             } else {
-                uploadDatasetPath(vm.datasetName, vm.filePath[0]).then(function success(response) {
+                uploadDatasetPath(vm.datasetName, vm.datasetFormat, vm.filePath[0]).then(function success(response) {
+                    vm.datasetsInProgress.pop();
                     vm.datasetsInProgress.push({
                         'name': vm.datasetName,
-                        'url': vm.filePath[0].name,
-                        'progress': Math.random() * 100.0
+                        'url': vm.fileUrl,
+                        'loadingStatus': response.data
                     });
+                    console.log("uploadDatasetPath", response.data);
                     vm.clearDataset();
                 }, function error(response) {
                     alert("Error!\n" + response);
@@ -69,12 +79,13 @@
             }, 0);
         };
 
-        function uploadDatasetUrl(datasetName, fileUrl) {
+        function uploadDatasetUrl(datasetName, format, fileUrl) {
             return $http({
                 method: "POST",
                 url: UPLOAD_DATASET_URL.replace("{datasetName}", datasetName),
                 params: {
-                    'url': fileUrl
+                    'url': fileUrl,
+                    'format': format
                 }
             }).then(function success(response) {
                 return response;
@@ -83,9 +94,10 @@
             });
         }
 
-        function uploadDatasetPath(datasetName, file) {
+        function uploadDatasetPath(datasetName, format, file) {
             let formData = new FormData();
             formData.set("file", file);
+            formData.set("format", format);
 
             return $http({
                 method: "PUT",

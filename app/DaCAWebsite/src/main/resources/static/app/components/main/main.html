@@ -20,7 +20,7 @@
                     <md-button aria-label="Compare" ng-click="vm.changePage(vm.pages.DATASETS.COMPARE)">Compare</md-button>
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button aria-label="Match/Align">Match/Align</md-button>
+                    <md-button aria-label="Match/Align" ng-click="vm.changePage(vm.pages.DATASETS.MATCH_ALIGN)">Match/Align</md-button>
                 </md-menu-item>
             </md-menu-content>
         </md-menu>
@@ -41,4 +41,5 @@
 </datasets-dashboard>
 <single-dataset ng-if="vm.activePage === vm.pages.DATASETS.SINGLE" dataset="vm.dataset"></single-dataset>
 <compare-datasets ng-if="vm.activePage === vm.pages.DATASETS.COMPARE"></compare-datasets>
+<match-align-datasets ng-if="vm.activePage === vm.pages.DATASETS.MATCH_ALIGN"></match-align-datasets>
 <help ng-if="vm.activePage === vm.pages.HELP"></help>

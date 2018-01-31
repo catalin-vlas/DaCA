@@ -8,10 +8,18 @@
             </md-card-title>
             <md-card-content>
                 <form name="projectForm">
-                    <md-input-container class="md-block">
-                        <label for="dataset_name">Dataset Name</label>
-                        <input md-maxlength="30" name="dataset_name" required ng-model="vm.datasetName">
-                    </md-input-container>
+                    <div layout="row">
+                        <md-input-container class="md-block" flex="70">
+                            <label for="dataset_name">Dataset Name</label>
+                            <input md-maxlength="30" name="dataset_name" required ng-model="vm.datasetName">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex="30">
+                            <label for="dataset_format">Format</label>
+                            <md-select ng-model="vm.datasetFormat" required>
+                                <md-option ng-value="format" ng-repeat="format in vm.formats">{{format}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
                     <div layout="row">
                         <md-input-container flex="70">
                             <label for="file_url">File URL</label>
@@ -41,7 +49,8 @@
               </md-card-title-text>
           </md-card-title>
           <md-card-content>
-              <md-progress-linear md-mode="determinate" value="{{dataset.progress}}"></md-progress-linear>
+              <md-progress-linear md-mode="indeterminate" ng-show="!dataset.loadingStatus"></md-progress-linear>
+              <h2>{{dataset.loadingStatus}}</h2>
           </md-card-content>
           <md-card-actions layout="row" layout-align="end center">
               <md-button class="md-warn md-raised" ng-click="vm.removeDatasetInProgress(dataset)">

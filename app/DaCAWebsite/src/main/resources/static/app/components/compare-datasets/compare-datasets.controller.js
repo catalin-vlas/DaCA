@@ -11,8 +11,8 @@
     function CompareDatasetsCtrl($http) {
         let vm = this;
         let COMPARE_URL = "http://localhost:1999/compare/{operation}/{dataset1}/{dataset2}";
-        let EXPORT_URL = "http://localhost:1999/compare/{operation}/{dataset1}/{dataset2}?format=n3";
-        let NAMESPACES_URL = "http://localhost:1997/stats/namespaces";
+        let EXPORT_URL = "http://localhost:1999/export/{operation}/{dataset1}/{dataset2}?format=n3";
+        let NAMESPACES_URL = "http://localhost:1994/namespace";
 
 
         vm.operations = ["union", "intersection", "difference", "isomorphism"];

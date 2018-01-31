@@ -64,13 +64,13 @@ public class SparqlServiceImpl implements SparqlService {
     @Override
     @RequestMapping(value = "/namespace/{namespaceId}", method = RequestMethod.DELETE)
     public String deleteNamespace(@PathVariable("namespaceId") String namespaceId) {
-        String result = "Success";
+        String result = "\"Success\"";
 
         try {
             rdfStorageHelper.deleteNamespace(namespaceId);
         } catch (Exception e) {
             e.printStackTrace();
-            result = "Failure";
+            result = "\"Failure\"";
         }
 
         return result;
@@ -102,7 +102,7 @@ public class SparqlServiceImpl implements SparqlService {
     @RequestMapping(value = "/triples/{namespaceId}", method = RequestMethod.POST)
     public String addTriples(@PathVariable("namespaceId") String namespaceId,
                              @RequestBody ArrayList<RdfTriple> triples) {
-        String result = "Success";
+        String result = "\"Success\"";
 
         try {
             List<Statement> statements = new ArrayList<>();
@@ -120,7 +120,7 @@ public class SparqlServiceImpl implements SparqlService {
             rdfStorageHelper.computeStats(namespaceId);
         } catch (Exception e) {
             e.printStackTrace();
-            result = "Failure";
+            result = "\"Failure\"";
         }
 
         return result;
@@ -131,7 +131,7 @@ public class SparqlServiceImpl implements SparqlService {
     public String addTriplesFromFile(@PathVariable("namespaceId") String namespaceId,
                                      @RequestParam("format") String format,
                                      @RequestParam("file") MultipartFile file) {
-        String result = "Success";
+        String result = "\"Success\"";
 
         try {
             RDFFormat rdfFormat = RDFFormat.valueOf(format);
@@ -144,7 +144,7 @@ public class SparqlServiceImpl implements SparqlService {
             rdfStorageHelper.computeStats(namespaceId);
         } catch (Exception e) {
             e.printStackTrace();
-            result = "Failure";
+            result = "\"Failure\"";
         }
 
         return result;
@@ -177,13 +177,13 @@ public class SparqlServiceImpl implements SparqlService {
     @RequestMapping(value = "/sparql/query", method = RequestMethod.POST)
     public String executeSparqlUpdate(@RequestParam(value = "namespaceId", required = true) String namespaceId,
                                       @RequestParam(value = "query", required = true) String query) {
-        String result = "Success";
+        String result = "\"Success\"";
 
         try {
             rdfStorageHelper.executeCustomUpdate(namespaceId, query);
         } catch (Exception e) {
             e.printStackTrace();
-            result = "Failure";
+            result = "\"Failure\"";
         }
 
         return result;

@@ -9,16 +9,20 @@
             <md-card-content layout="row">
                 <md-card md-theme="dark-blue" flex="40">
                     <md-card-content layout="column">
-                        <div>Graphs: {{dataset.numberOfGraphs}}</div>
-                        <div>Nodes: {{dataset.numberOfNodes}}</div>
                         <div>Size: {{dataset.size}}</div>
+                        <div>Max degree: {{dataset.maxDegree}}</div>
+                        <div>Max In degree: {{dataset.maxInDegree}}</div>
+                        <div>Max Out degree: {{dataset.maxOutDegree}}</div>
                     </md-card-content>
                 </md-card>
                 <md-card md-theme="dark-blue" flex="40">
                     <md-card-content layout="column">
                         <div>Triples: {{dataset.numberOfTriples}}</div>
-                        <div>Avg. triples / graph: {{dataset.numberOfTriples / dataset.numberOfGraphs | number: 2}}</div>
-                        <div>Maximum triples for node: {{dataset.maximumTriples}}</div>
+                        <div>Nodes: {{dataset.numberOfNodes}}</div>
+                        <div>Blank nodes: {{dataset.numberOfBlankNodes}}</div>
+                        <div>Types: {{dataset.numberOfTypes}}</div>
+                        <div>URIs: {{dataset.numberOfURINodes}}</div>
+                        <div>Literals: {{dataset.numberOfLiterals}}</div>
                     </md-card-content>
                 </md-card>
                 <div flex="20" layout-align="center center">

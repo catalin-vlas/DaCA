@@ -13,25 +13,32 @@
 
     function DatasetsDashboardCtrl($http) {
         let vm = this;
-        let STATS_NAMESPACES_URL = "http://localhost:1997/stats/namespaces";
+        let NAMESPACES_URL = "http://localhost:1994/namespace";
+        let NAMESPACE_STATS_URL = "http://localhost:1994/namespace/stats/{datasetName}";
 
         vm.$onInit = function() {
             getNamespaces().then(function success(response) {
                 vm.datasets = [];
                 for(let i = 0 ; i < response.data.length; i++) {
-                    vm.datasets.push({
-                        'name': response.data[i],
-                        'size': '4MB',
-                        'numberOfGraphs': 5,
-                        'numberOfNodes': 1337,
-                        'numberOfTriples': 4500,
-                        'maximumTriples': 21,
-                        'graphs': [
-                            {'name': 'Graph A'},
-                            {'name': 'Graph B'},
-                            {'name': 'Graph C'},
-                            {'name': 'Graph D'}
-                        ]
+
+                    getNamespaceStats(response.data[i]).then(function success(response) {
+                        vm.datasets.push({
+                            'name': response.data["namespaceID"],
+                            'size': response.data["size"] + " bytes",
+                            'numberOfNodes': response.data["nrNodes"],
+                            'numberOfBlankNodes': response.data["nrBlankNodes"],
+                            'numberOfTriples': response.data["nrTriples"],
+
+                            'numberOfTypes': response.data["nrType"],
+                            'numberOfURINodes': response.data["nrURINodes"],
+                            'numberOfLiterals': response.data["nrLiterals"],
+
+                            'maxDegree': response.data["maxDegree"],
+                            'maxInDegree': response.data["maxInDegree"],
+                            'maxOutDegree': response.data["maxOutDegree"]
+                        });
+                    }, function error(response) {
+                        alert("Couldn't get namespace stats for: ", response.data[i]);
                     });
                 }
             }, function error(response) {
@@ -46,7 +53,18 @@
         function getNamespaces() {
             return $http({
                 method: "GET",
-                url: STATS_NAMESPACES_URL
+                url: NAMESPACES_URL
+            }).then(function success(response) {
+                return response;
+            }, function error(response) {
+                return response;
+            });
+        }
+
+        function getNamespaceStats(datasetName) {
+            return $http({
+                method: "GET",
+                url: NAMESPACE_STATS_URL.replace("{datasetName}", datasetName)
             }).then(function success(response) {
                 return response;
             }, function error(response) {
